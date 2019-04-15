@@ -1,4 +1,4 @@
-package com.project.platform.myapp;
+package com.project.platform.Game;
 
 public class Player {
     private int id;
@@ -8,10 +8,10 @@ public class Player {
     private String image;
 
     public Player(String name, String image) {
-        //this.id =
+        this.id = -1;
         this.name = name;
         this.score = 0;
-        //this.place =
+        this.place = -1;
         this.image = image;
     }
 
@@ -61,5 +61,11 @@ public class Player {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void add() {
+        DatabaseManager.insert(this);
+        this.id = DatabaseManager.get(DatabaseManager.getIndexOf(this)).id;
+        this.place = DatabaseManager.generatePlace(this);
     }
 }

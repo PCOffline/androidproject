@@ -1,4 +1,4 @@
-package com.project.platform.myapp;
+package com.project.platform.Game;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class DatabaseManager {
      * @return long value to represent the command
      */
 
-    public static long insertIntoDatabase(Player player) {
+    static long insert(Player player) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseOpenHelper.COL_ID, player.getId());
         contentValues.put(DatabaseOpenHelper.COL_NAME, player.getName());
@@ -73,11 +74,22 @@ public class DatabaseManager {
         return results;
     }
 
-    public static long deleteFromDatabase(Player player) {
+    private static List<Player> getMembersByScore() {
+        List<Player> res = getAllMembers();
+        Collections.sort(res, new Comparator<Player>() {
+            @Override
+            public int compare(Player o1, Player o2) {
+                return Integer.compare(o1.getScore(), o2.getScore());
+            }
+        });
+        return res;
+    }
+
+    public static long delete(Player player) {
         return mDatabase.delete(DatabaseOpenHelper.TABLE_NAME_PLAYERS, "id = " + player.getId(), null);
     }
 
-    public static long updateInDatabase(Player player, Player other) {
+    public static long update(Player player, Player other) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseOpenHelper.COL_ID, other.getId());
         contentValues.put(DatabaseOpenHelper.COL_NAME, other.getName());
@@ -85,5 +97,19 @@ public class DatabaseManager {
         contentValues.put(DatabaseOpenHelper.COL_PLACE, other.getPlace());
         contentValues.put(DatabaseOpenHelper.COL_IMAGE, other.getImage());
         return mDatabase.update(DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id = " + player.getId(), null);
+    }
+
+    static Player get(int id) {
+        return getAllMembers().get(id - 1);
+    }
+
+    static int generatePlace(Player player) {
+        if (getMembersByScore().contains(player))
+            return getMembersByScore().indexOf(player);
+        return -1;
+    }
+
+    static int getIndexOf(Player player) {
+        return getAllMembers().indexOf(player);
     }
 }

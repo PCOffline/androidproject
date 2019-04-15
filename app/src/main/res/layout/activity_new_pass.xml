@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.project.platform.myapp.NewPassActivity">
+    tools:context="com.project.platform.Game.NewPassActivity">
 
     <TextView
         android:id="@+id/text_view_passwor_NewPass"

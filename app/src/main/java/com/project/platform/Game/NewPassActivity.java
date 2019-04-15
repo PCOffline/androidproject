@@ -1,4 +1,4 @@
-package com.project.platform.myapp;
+package com.project.platform.Game;
 
 import android.content.Intent;
 import android.os.Bundle;

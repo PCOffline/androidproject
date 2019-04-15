@@ -1,4 +1,4 @@
-package com.project.platform.myapp;
+package com.project.platform.Game;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,9 +42,8 @@ public class LogInActivity extends AppCompatActivity {
                     editor.putBoolean("isLoggedIn", true);
                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(LogInActivity.this, "You have been successfully connected", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(LogInActivity.this, "The passwrd or email is incorrect", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });

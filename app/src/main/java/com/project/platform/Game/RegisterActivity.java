@@ -1,4 +1,4 @@
-package com.project.platform.myapp;
+package com.project.platform.Game;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.miretsky.ron.myapp.R;
 
-public class RegsisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     Button submitButton;
     Button submitButton2;
@@ -23,36 +23,36 @@ public class RegsisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regsister);
         submitButton = findViewById(R.id.button_submit_regsister);
+        passwordEditText = findViewById(R.id.edit_text_password);
+        confirmEditText = findViewById(R.id.edit_text_confirm);
+        EmailEditText = findViewById(R.id.edit_text_email);
+        submitButton2 = findViewById(R.id.button_submit_LogIn_Main);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (EmailEditText.length() > 0) {
+                if (EmailEditText.getText().toString().length() > 0) {
 
                     if (passwordEditText.getText().toString().equals(confirmEditText.getText().toString()) && passwordEditText.length() > 0) {
-                        Intent intent = new Intent(RegsisterActivity.this, MainActivity.class);
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
-                        Toast.makeText(RegsisterActivity.this, "You signed up", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
-                        Toast.makeText(RegsisterActivity.this, "Sorry password are not equals", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(RegsisterActivity.this, "Sorry email are not equals", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Invalid E-Mail Address", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        submitButton2 = findViewById(R.id.button_submit_LogIn_Main);
         submitButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegsisterActivity.this, LogInActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LogInActivity.class);
                 startActivity(intent);
-                //Toast.makeText(RegisterActivity.this, "Hello From Kobi", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
-
-        passwordEditText = findViewById(R.id.edit_text_password);
-        confirmEditText = findViewById(R.id.edit_text_confirm);
-        EmailEditText = findViewById(R.id.edit_text_email);
     }
 }
