@@ -1,10 +1,12 @@
-package com.miretsky.ron.myapp;
+package com.project.platform.myapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import com.miretsky.ron.myapp.R;
 
 public class NewSplashActivity extends AppCompatActivity {
 

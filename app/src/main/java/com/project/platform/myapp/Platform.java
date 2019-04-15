@@ -1,4 +1,4 @@
-package com.miretsky.ron.myapp;
+package com.project.platform.myapp;
 
 import android.widget.ImageView;
 

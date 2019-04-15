@@ -1,4 +1,4 @@
-package com.miretsky.ron.myapp;
+package com.project.platform.myapp;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LogInActivity">
+    tools:context="com.project.platform.myapp.LogInActivity">
 
     <TextView
         android:id="@+id/text_view_email_LogIn"

@@ -1,4 +1,4 @@
-package com.miretsky.ron.myapp;
+package com.project.platform.myapp;
 
 public class Player {
     private int id;
