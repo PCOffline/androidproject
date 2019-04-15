@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewSplashActivity">
+
+    <TextView
+        android:id="@+id/text_view_splash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SPLASH"
+        android:textColor="#00b65e"
+        android:textSize="90sp" />
+
+    <TextView
+        android:id="@+id/text_view_splash2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="R"
+        android:textColor="#00b65e"
+        android:textSize="90sp" />
+
+    <TextView
+        android:id="@+id/text_view_splash3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="O"
+        android:textColor="#00b65e"
+        android:textSize="90sp" />
+
+    <TextView
+        android:id="@+id/text_view_splash4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="N"
+        android:textColor="#00b65e"
+        android:textSize="90sp" />
+</LinearLayout>
