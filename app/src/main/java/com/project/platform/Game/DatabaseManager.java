@@ -27,7 +27,7 @@ public class DatabaseManager {
      * Insert into Database
      *
      * @param player New player to insert
-     * @return long value to represent the command
+     * @return long value to check for success
      */
 
     static long insert(Player player) {
@@ -86,7 +86,7 @@ public class DatabaseManager {
     }
 
     public static long delete(Player player) {
-        return mDatabase.delete(DatabaseOpenHelper.TABLE_NAME_PLAYERS, "id = " + player.getId(), null);
+        return mDatabase.delete(DatabaseOpenHelper.TABLE_NAME_PLAYERS, "id=" + player.getId(), null);
     }
 
     public static long update(Player player, Player other) {
@@ -96,7 +96,7 @@ public class DatabaseManager {
         contentValues.put(DatabaseOpenHelper.COL_SCORE, other.getScore());
         contentValues.put(DatabaseOpenHelper.COL_PLACE, other.getPlace());
         contentValues.put(DatabaseOpenHelper.COL_IMAGE, other.getImage());
-        return mDatabase.update(DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id = " + player.getId(), null);
+        return mDatabase.update(DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id=" + player.getId(), null);
     }
 
     static Player get(int id) {

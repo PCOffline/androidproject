@@ -10,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.miretsky.ron.myapp.R;
-
 public class MainActivity extends AppCompatActivity {
 
     boolean pressed = false;
@@ -54,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        this.pressed = event.getAction() == MotionEvent.ACTION_DOWN;
-        return pressed;
+        this.ball.setX(event.getX());
+        return event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE;
     }
 }
 

@@ -7,7 +7,7 @@ public class Player {
     private int place;
     private String image;
 
-    public Player(String name, String image) {
+    Player(String name, String image) {
         this.id = -1;
         this.name = name;
         this.score = 0;
@@ -15,7 +15,7 @@ public class Player {
         this.image = image;
     }
 
-    public Player(int id, String name, int score, int place, String image) {
+    Player(int id, String name, int score, int place, String image) {
         this.id = id;
         this.name = name;
         this.score = score;
