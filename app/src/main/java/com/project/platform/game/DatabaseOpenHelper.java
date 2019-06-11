@@ -1,4 +1,4 @@
-package com.project.platform.Game;
+package com.project.platform.game;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,14 +12,12 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String COL_ID = "Id";
     public static final String COL_NAME = "Name";
     public static final String COL_SCORE = "Score";
-    public static final String COL_PLACE = "Place";
     public static final String COL_IMAGE = "Image";
 
     private static final String CREATE_TABLE_PLAYERS = "create table " + TABLE_NAME_PLAYERS
             + " ("
             + COL_ID + " integer primary key autoincrement, "
             + COL_NAME + " text, "
-            + COL_PLACE + "place"
             + COL_SCORE + "Score"
             + COL_IMAGE
 

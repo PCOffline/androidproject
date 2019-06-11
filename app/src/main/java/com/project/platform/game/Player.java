@@ -1,25 +1,22 @@
-package com.project.platform.Game;
+package com.project.platform.game;
 
 public class Player {
     private int id;
     private String name;
     private int score;
-    private int place;
     private String image;
 
     Player(String name, String image) {
         this.id = -1;
         this.name = name;
         this.score = 0;
-        this.place = -1;
         this.image = image;
     }
 
-    Player(int id, String name, int score, int place, String image) {
+    Player(int id, String name, int score , String image) {
         this.id = id;
         this.name = name;
         this.score = score;
-        this.place = place;
         this.image = image;
     }
 
@@ -37,14 +34,6 @@ public class Player {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public int getPlace() {
-        return place;
-    }
-
-    public void setPlace(int place) {
-        this.place = place;
     }
 
     public String getImage() {
@@ -66,6 +55,5 @@ public class Player {
     public void add() {
         DatabaseManager.insert(this);
         this.id = DatabaseManager.get(DatabaseManager.getIndexOf(this)).id;
-        this.place = DatabaseManager.generatePlace(this);
     }
 }

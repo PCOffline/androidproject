@@ -1,4 +1,4 @@
-package com.project.platform.Game;
+package com.project.platform.game;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -35,7 +35,6 @@ public class DatabaseManager {
         contentValues.put(DatabaseOpenHelper.COL_ID, player.getId());
         contentValues.put(DatabaseOpenHelper.COL_NAME, player.getName());
         contentValues.put(DatabaseOpenHelper.COL_SCORE, player.getScore());
-        contentValues.put(DatabaseOpenHelper.COL_PLACE, player.getPlace());
         contentValues.put(DatabaseOpenHelper.COL_IMAGE, player.getImage());
 
         return mDatabase.insert(DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, contentValues);
@@ -54,16 +53,14 @@ public class DatabaseManager {
                 int indexId = cursor.getColumnIndex(DatabaseOpenHelper.COL_ID);
                 int indexName = cursor.getColumnIndex(DatabaseOpenHelper.COL_NAME);
                 int indexScore = cursor.getColumnIndex(DatabaseOpenHelper.COL_SCORE);
-                int indexPlace = cursor.getColumnIndex(DatabaseOpenHelper.COL_PLACE);
                 int indexImage = cursor.getColumnIndex(DatabaseOpenHelper.COL_IMAGE);
 
                 int id = cursor.getInt(indexId);
                 String name = cursor.getString(indexName);
                 int score = cursor.getInt(indexScore);
-                int place = cursor.getInt(indexPlace);
                 String image = cursor.getString(indexImage);
 
-                Player player = new Player(id, name, score, place, image);
+                Player player = new Player(id, name, score , image);
 
                 results.add(player);
             }
@@ -94,19 +91,12 @@ public class DatabaseManager {
         contentValues.put(DatabaseOpenHelper.COL_ID, other.getId());
         contentValues.put(DatabaseOpenHelper.COL_NAME, other.getName());
         contentValues.put(DatabaseOpenHelper.COL_SCORE, other.getScore());
-        contentValues.put(DatabaseOpenHelper.COL_PLACE, other.getPlace());
         contentValues.put(DatabaseOpenHelper.COL_IMAGE, other.getImage());
         return mDatabase.update(DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id=" + player.getId(), null);
     }
 
     static Player get(int id) {
         return getAllMembers().get(id - 1);
-    }
-
-    static int generatePlace(Player player) {
-        if (getMembersByScore().contains(player))
-            return getMembersByScore().indexOf(player);
-        return -1;
     }
 
     static int getIndexOf(Player player) {

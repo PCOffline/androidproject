@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">myApp</string>
+    <string name="app_name">Find the Differences</string>
+    <string name="pause">pause</string>
+    <string name="settings">settings</string>
+    <string name="resume">resume</string>
+    <string name="please_insert_your_password">Please Insert your Password</string>
+    <string name="emailPrompt">Please insert your email</string>
+    <string name="email">EMAIL</string>
+    <string name="password">PASSWORD</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="please_confirm_your_password">Please Confirm your Password</string>
+    <string name="submit">Submit</string>
+    <string name="or_login">Or LogIn</string>
+    <string name="please_insert_your_password">Please Insert your Password</string>
+    <string name="password">PASSWORD</string>
+    <string name="please_insert_your_password">Please Insert your Password</string>
+    <string name="submit">Submit</string>
 </resources>

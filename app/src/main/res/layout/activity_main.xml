@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.project.platform.Game.MainActivity">
+    tools:context="com.project.platform.game.MainActivity">
 
     <LinearLayout
         android:id="@+id/pauseLayout"
@@ -17,13 +17,13 @@
             android:id="@+id/resumeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="resume" />
+            android:text="@string/resume" />
 
         <Button
             android:id="@+id/settingsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="settings" />
+            android:text="@string/settings" />
     </LinearLayout>
 
     <ImageButton
@@ -34,16 +34,8 @@
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:src="@drawable/pause" />
-
-    <ImageView
-        android:id="@+id/ball"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ball" />
+        android:src="@drawable/pause"
+        android:contentDescription="@string/pause" />
 
 
 </RelativeLayout>

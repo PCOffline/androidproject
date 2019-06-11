@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.project.platform.Game.NewPassActivity">
+    tools:context="com.project.platform.game.NewPassActivity">
 
     <TextView
         android:id="@+id/text_view_passwor_NewPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PASSWORD"
+        android:text="@string/password"
         android:textColor="#00b65e"
         android:textSize="40sp" />
 
@@ -18,17 +18,18 @@
         android:id="@+id/edit_text_password_NewPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Please Insert your Password"
+        android:hint="@string/please_insert_your_password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        tools:ignore="Autofill" />
 
     <TextView
         android:id="@+id/text_view_passwor_Confirm_NewPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONFIRM PASSWORD "
+        android:text="@string/confirm_password"
         android:textColor="#00b65e"
         android:textSize="38sp" />
 
@@ -36,17 +37,18 @@
         android:id="@+id/edit_text_password_Confirm_NewPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Please Insert your Password"
+        android:hint="@string/please_insert_your_password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/button_submit_NewPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textColor="#0c7ded"
         android:textSize="40sp" />
 

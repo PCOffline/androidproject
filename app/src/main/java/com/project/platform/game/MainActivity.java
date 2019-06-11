@@ -1,4 +1,4 @@
-package com.project.platform.Game;
+package com.project.platform.game;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    boolean pressed = false;
     ImageButton pause;
-    ImageView ball;
     LinearLayout pauseLayout;
     Button resumeBtn;
     Button settingsBtn;
@@ -24,12 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pause = findViewById(R.id.pause_btn);
-        ball = findViewById(R.id.ball);
         pauseLayout = findViewById(R.id.pauseLayout);
         resumeBtn = findViewById(R.id.resumeBtn);
         settingsBtn = findViewById(R.id.settingsBtn);
-
-        Toast.makeText(this, new Player("", "").getId(), Toast.LENGTH_LONG).show();
 
         pauseLayout.setVisibility(View.INVISIBLE);
 
@@ -52,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        this.ball.setX(event.getX());
-        return event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE;
+        return event.getAction() == MotionEvent.ACTION_DOWN;
     }
 }
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.project.platform.Game.RegisterActivity">
+    tools:context="com.project.platform.game.RegisterActivity">
 
     <TextView
         android:id="@+id/text_view_email"
@@ -36,11 +36,12 @@
         android:id="@+id/edit_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Please Insert your Password"
+        android:hint="@string/please_insert_your_password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        android:importantForAutofill="no" />
 
 
     <TextView
