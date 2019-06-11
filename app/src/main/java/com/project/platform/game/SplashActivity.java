@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.miretsky.ron.myapp.R;
-
 public class SplashActivity extends AppCompatActivity {
 
+    @SuppressWarnings("FieldCanBeLocal")
     private final int TIME = 2000;
 
     @Override

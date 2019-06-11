@@ -10,7 +10,7 @@
         android:id="@+id/text_view_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="EMAIL"
+        android:text="@string/email"
         android:textColor="#00b65e"
         android:textSize="40sp" />
 
@@ -18,17 +18,18 @@
         android:id="@+id/edit_text_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Please insert your email"
+        android:hint="@string/insert_pass"
         android:inputType="textEmailAddress"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        tools:ignore="Autofill" />
 
     <TextView
         android:id="@+id/text_view_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PASSWORD"
+        android:text="@string/password"
         android:textColor="#00b65e"
         android:textSize="40sp" />
 
@@ -36,19 +37,19 @@
         android:id="@+id/edit_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/please_insert_your_password"
+        android:hint="@string/insert_pass"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
         android:textSize="26sp"
-        android:importantForAutofill="no" />
+        tools:ignore="Autofill" />
 
 
     <TextView
         android:id="@+id/text_view_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm Password"
+        android:text="@string/confirm_pass"
         android:textColor="#00b65e"
         android:textSize="40sp" />
 
@@ -56,17 +57,18 @@
         android:id="@+id/edit_text_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Please Confirm your Password"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/button_submit_regsister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textColor="#0c7ded"
         android:textSize="40sp" />
 
@@ -74,7 +76,7 @@
         android:id="@+id/button_submit_LogIn_Main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Or LogIn"
+        android:text="@string/or_login"
         android:textColor="#0c7ded"
         android:textSize="50sp" />
 

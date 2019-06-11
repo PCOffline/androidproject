@@ -18,7 +18,7 @@
         android:id="@+id/edit_text_password_NewPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/please_insert_your_password"
+        android:hint="@string/insert_pass"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
@@ -26,7 +26,7 @@
         tools:ignore="Autofill" />
 
     <TextView
-        android:id="@+id/text_view_passwor_Confirm_NewPass"
+        android:id="@+id/confirm_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/confirm_password"
@@ -37,7 +37,7 @@
         android:id="@+id/edit_text_password_Confirm_NewPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/please_insert_your_password"
+        android:hint="@string/insert_pass"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"

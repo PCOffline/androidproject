@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.miretsky.ron.myapp.R;
-
 public class NewPassActivity extends AppCompatActivity {
 
     Button submitButton;
