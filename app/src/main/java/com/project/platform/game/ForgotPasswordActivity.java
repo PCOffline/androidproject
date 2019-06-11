@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     Button submitButton;
-    EditText EmailForgotdEditText;
+    EditText forgotEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (EmailForgotdEditText.length() > 0) {
+                if (forgotEmail.length() > 0) {
                     Intent intent = new Intent(ForgotPasswordActivity.this, ConfirmCodeActivity.class);
                     startActivity(intent);
 
@@ -31,7 +31,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
             }
         });
-        EmailForgotdEditText = findViewById(R.id.edit_text_email_forgot_password);
+        forgotEmail = findViewById(R.id.edit_text_email_forgot_password);
 
     }
 }

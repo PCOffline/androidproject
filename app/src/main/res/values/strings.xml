@@ -1,14 +1,64 @@
 <resources>
-    <string name="app_name">Find the Differences</string>
-    <string name="pause">Pause</string>
-    <string name="settings">Settings</string>
-    <string name="resume">Resume</string>
-    <string name="insert_pass">Please Insert your Password</string>
-    <string name="emailPrompt">Please insert your email</string>
-    <string name="email">E-Mail</string>
-    <string name="confirm_pass">Confirm Password</string>
-    <string name="confirm_password">Please Confirm your Password</string>
-    <string name="submit">Submit</string>
-    <string name="or_login">Or Login</string>
-    <string name="password">Password</string>
+    <string name="app_name" translatable="false">Find the Differences</string>
+    <string name="pause" translatable="false">Pause</string>
+    <string name="settings" translatable="false">Settings</string>
+    <string name="resume" translatable="false">Resume</string>
+    <string name="insert_pass" translatable="false">Please Insert your Password</string>
+    <string name="emailPrompt" translatable="false">Please insert your email</string>
+    <string name="email" translatable="false">E-Mail</string>
+    <string name="confirm_pass" translatable="false">Confirm Password</string>
+    <string name="confirm_password" translatable="false">Please Confirm your Password</string>
+    <string name="submit" translatable="false">Submit</string>
+    <string name="or_login" translatable="false">Or Login</string>
+    <string name="password" translatable="false">Password</string>
+
+    <string name="image11"></string>
+    <string name="image12"></string>
+    <string name="image13"></string>
+    <string name="image14"></string>
+
+    <string name="image21"></string>
+    <string name="image22"></string>
+    <string name="image23"></string>
+    <string name="image24"></string>
+
+    <string name="image31"></string>
+    <string name="image32"></string>
+    <string name="image33"></string>
+    <string name="image34"></string>
+
+    <string name="image41"></string>
+    <string name="image42"></string>
+    <string name="image43"></string>
+    <string name="image44"></string>
+
+    <string name="image51"></string>
+    <string name="image52"></string>
+    <string name="image53"></string>
+    <string name="image54"></string>
+
+    <string name="image61"></string>
+    <string name="image62"></string>
+    <string name="image63"></string>
+    <string name="image64"></string>
+
+    <string name="image71"></string>
+    <string name="image72"></string>
+    <string name="image73"></string>
+    <string name="image74"></string>
+
+    <string name="image81"></string>
+    <string name="image82"></string>
+    <string name="image83"></string>
+    <string name="image84"></string>
+
+    <string name="image91"></string>
+    <string name="image92"></string>
+    <string name="image93"></string>
+    <string name="image94"></string>
+
+    <string name="image101"></string>
+    <string name="image102"></string>
+    <string name="image103"></string>
+    <string name="image104"></string>
 </resources>

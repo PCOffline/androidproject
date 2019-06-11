@@ -19,7 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regsister);
+        setContentView(R.layout.activity_register);
         submitButton = findViewById(R.id.button_submit_regsister);
         passwordEditText = findViewById(R.id.edit_text_password);
         confirmEditText = findViewById(R.id.edit_text_confirm);

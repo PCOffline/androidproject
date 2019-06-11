@@ -13,7 +13,7 @@ public class Player {
         this.image = image;
     }
 
-    Player(int id, String name, int score , String image) {
+    Player(int id, String name, int score, String image) {
         this.id = id;
         this.name = name;
         this.score = score;

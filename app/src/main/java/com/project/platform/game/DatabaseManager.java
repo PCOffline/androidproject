@@ -60,7 +60,7 @@ public class DatabaseManager {
                 int score = cursor.getInt(indexScore);
                 String image = cursor.getString(indexImage);
 
-                Player player = new Player(id, name, score , image);
+                Player player = new Player(id, name, score, image);
 
                 results.add(player);
             }
