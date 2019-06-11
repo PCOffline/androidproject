@@ -5,8 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+@SuppressWarnings("WeakerAccess")
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "Leaderboards";
+    public static final String DATABASE_NAME = "Stats";
     public static final String TABLE_NAME_PLAYERS = "Players";
     public static final int DATABASE_VERSION = 1;
     public static final String COL_ID = "Id";
