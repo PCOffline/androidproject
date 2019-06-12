@@ -10,11 +10,11 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    static Player player;
     ImageButton pause;
     LinearLayout pauseLayout;
     Button resumeBtn;
     Button settingsBtn;
-    static Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

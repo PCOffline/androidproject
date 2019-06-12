@@ -6,6 +6,53 @@
     android:orientation="vertical"
     tools:context="com.project.platform.game.MainActivity">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/image2"
+            android:src=""
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/image4"
+            android:src=""
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/image3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/image1"
+            android:src=""
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/image4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/image3"
+            android:src=""
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/play"
+        tools:ignore="RelativeOverlap" />
+
     <LinearLayout
         android:id="@+id/pauseLayout"
         android:layout_width="wrap_content"
