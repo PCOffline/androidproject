@@ -35,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String s = username.getText().toString();
                 if (s.length() > 0 && DatabaseManager.findByName(s) == null) {
-
                     if (password.getText().toString().equals(confirmPassword.getText().toString()) && password.length() > 0) {
                         editor.putBoolean("isLoggedIn", true).apply();
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
@@ -45,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Invalid E-Mail Address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Invalid Username", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -35,13 +35,13 @@ public class LogInActivity extends AppCompatActivity {
                 String username = LogInActivity.this.username.getText().toString();
                 String password = LogInActivity.this.password.getText().toString();
                 if (username.length() > 0
-                        && username.contains("@")
+                        && DatabaseManager.findByName(username) != null
                         && password.length() > 0
                         && DatabaseManager.findByName("").getPassword().equals(password)) {
-                    // If all credentials are valid
                     editor.putBoolean("isLoggedIn", true).apply();
                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(LogInActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
                 }

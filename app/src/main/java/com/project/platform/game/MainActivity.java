@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         player = new Player(name, password);
+        DatabaseManager.insert(player);
 
         pauseLayout.setVisibility(View.INVISIBLE);
 
