@@ -2,30 +2,30 @@ package com.project.platform.game;
 
 public class Player {
     private int id;
-    private String name;
+    private String username;
     private int score;
-    private String image;
+    private String password;
 
-    Player(String name, String image) {
+    Player(String username, String password) {
         this.id = -1;
-        this.name = name;
+        this.username = username;
         this.score = 0;
-        this.image = image;
+        this.password = password;
     }
 
-    Player(int id, String name, int score, String image) {
+    Player(int id, String username, String password, int score) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.score = score;
-        this.image = image;
+        this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getScore() {
@@ -36,20 +36,20 @@ public class Player {
         this.score = score;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void add() {

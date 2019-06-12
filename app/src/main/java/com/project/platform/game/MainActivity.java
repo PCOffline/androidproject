@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout pauseLayout;
     Button resumeBtn;
     Button settingsBtn;
+    static Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +25,31 @@ public class MainActivity extends AppCompatActivity {
         resumeBtn = findViewById(R.id.resumeBtn);
         settingsBtn = findViewById(R.id.settingsBtn);
 
+        String name;
+        String password;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                name = null;
+                password = null;
+            } else {
+                name = extras.getString("username");
+                password = extras.getString("password");
+            }
+        } else {
+            name = (String) savedInstanceState.getSerializable("username");
+            password = (String) savedInstanceState.getSerializable("password");
+        }
+
+        player = new Player(name, password);
+
         pauseLayout.setVisibility(View.INVISIBLE);
 
 
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pause();
                 pauseLayout.setVisibility(View.VISIBLE);
             }
         });
@@ -37,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         resumeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resume();
                 pauseLayout.setVisibility(View.INVISIBLE);
             }
         });
@@ -46,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return event.getAction() == MotionEvent.ACTION_DOWN;
+    }
+
+    private void pause() {
+
+    }
+
+    private void resume() {
+
     }
 }
 

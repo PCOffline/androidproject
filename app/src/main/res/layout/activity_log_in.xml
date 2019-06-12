@@ -6,55 +6,41 @@
     android:orientation="vertical"
     tools:context="com.project.platform.game.LogInActivity">
 
-    <TextView
-        android:id="@+id/text_view_email_LogIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="EMAIL"
-        android:textColor="#00b65e"
-        android:textSize="40sp" />
-
     <EditText
-        android:id="@+id/edit_text_email_LogIn"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Please insert your email"
+        android:hint="@string/username"
         android:inputType="textEmailAddress"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
-        android:textSize="26sp" />
-
-    <TextView
-        android:id="@+id/text_view_passwor_LogIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PASSWORD"
-        android:textColor="#00b65e"
-        android:textSize="40sp" />
+        android:textSize="26sp"
+        tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/edit_text_password_LogIn"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Please Insert your Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#4e4e4e"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        tools:ignore="Autofill" />
 
     <Button
-        android:id="@+id/button_submit_LogIn"
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/login"
         android:textColor="#0c7ded"
         android:textSize="40sp" />
 
     <Button
-        android:id="@+id/button_submit_LogIn2"
+        android:id="@+id/forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Forgot Password"
+        android:text="@string/forgot_password"
         android:textColor="#0c7ded"
         android:textSize="40sp" />
 

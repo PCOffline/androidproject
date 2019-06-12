@@ -1,4 +1,4 @@
-package com.miretsky.ron.myapp;
+package com.project.platform.game;
 
 import org.junit.Test;
 

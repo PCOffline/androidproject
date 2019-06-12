@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
 
-    Button submitButton;
-    Button submitButton2;
-    EditText passwordEditText;
-    EditText emailEditText;
+    Button loginBtn;
+    Button forgotPassBtn;
+    EditText password;
+    EditText username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,21 +23,23 @@ public class LogInActivity extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences("loginActivity", MODE_PRIVATE);
         final SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("isLoggedIn", false);
-        editor.apply();
 
-        submitButton = findViewById(R.id.button_submit_LogIn);
-        emailEditText = findViewById(R.id.edit_text_email_LogIn);
-        passwordEditText = findViewById(R.id.edit_text_password_LogIn);
+        loginBtn = findViewById(R.id.login);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        forgotPassBtn = findViewById(R.id.forgot_password);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (emailEditText.getText().toString().length() > 0
-                        && emailEditText.getText().toString().contains("@")
-                        && passwordEditText.getText().toString().length() > 0) {
-                    //if password & mail are correct
-                    editor.putBoolean("isLoggedIn", true);
+                String username = LogInActivity.this.username.getText().toString();
+                String password = LogInActivity.this.password.getText().toString();
+                if (username.length() > 0
+                        && username.contains("@")
+                        && password.length() > 0
+                        && DatabaseManager.findByName("").getPassword().equals(password)) {
+                    // If all credentials are valid
+                    editor.putBoolean("isLoggedIn", true).apply();
                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -45,8 +47,7 @@ public class LogInActivity extends AppCompatActivity {
                 }
             }
         });
-        submitButton2 = findViewById(R.id.button_submit_LogIn2);
-        submitButton2.setOnClickListener(new View.OnClickListener() {
+        forgotPassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LogInActivity.this, ForgotPasswordActivity.class);

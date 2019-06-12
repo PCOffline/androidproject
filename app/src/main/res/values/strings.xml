@@ -3,14 +3,20 @@
     <string name="pause" translatable="false">Pause</string>
     <string name="settings" translatable="false">Settings</string>
     <string name="resume" translatable="false">Resume</string>
-    <string name="insert_pass" translatable="false">Please Insert your Password</string>
-    <string name="emailPrompt" translatable="false">Please insert your email</string>
-    <string name="email" translatable="false">E-Mail</string>
+    <string name="email" translatable="false">Email</string>
     <string name="confirm_pass" translatable="false">Confirm Password</string>
-    <string name="confirm_password" translatable="false">Please Confirm your Password</string>
     <string name="submit" translatable="false">Submit</string>
     <string name="or_login" translatable="false">Or Login</string>
     <string name="password" translatable="false">Password</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="code" translatable="false">Enter the Code</string>
+    <string name="new_password">New Password</string>
+    <string name="username">username</string>
+    <string name="register">Register</string>
+    <string name="signed_in">Already Have an Account?</string>
+
+    <!-- Images -->
 
     <string name="image11"></string>
     <string name="image12"></string>
@@ -61,4 +67,5 @@
     <string name="image102"></string>
     <string name="image103"></string>
     <string name="image104"></string>
+
 </resources>

@@ -11,16 +11,16 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_PLAYERS = "Players";
     public static final int DATABASE_VERSION = 1;
     public static final String COL_ID = "Id";
-    public static final String COL_NAME = "Name";
+    public static final String COL_USERNAME = "Username";
+    public static final String COL_PASSWORD = "Password";
     public static final String COL_SCORE = "Score";
-    public static final String COL_IMAGE = "Image";
 
     private static final String CREATE_TABLE_PLAYERS = "create table " + TABLE_NAME_PLAYERS
             + " ("
             + COL_ID + " integer primary key autoincrement, "
-            + COL_NAME + " text, "
-            + COL_SCORE + "Score"
-            + COL_IMAGE
+            + COL_USERNAME + " text, "
+            + COL_PASSWORD + " text, "
+            + COL_SCORE + " integer"
 
             + ");";
 

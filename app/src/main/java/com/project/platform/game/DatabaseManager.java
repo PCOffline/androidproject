@@ -33,9 +33,10 @@ public class DatabaseManager {
     static long insert(Player player) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseOpenHelper.COL_ID, player.getId());
-        contentValues.put(DatabaseOpenHelper.COL_NAME, player.getName());
+        contentValues.put(DatabaseOpenHelper.COL_USERNAME, player.getUsername());
+        contentValues.put(DatabaseOpenHelper.COL_USERNAME, player.getUsername());
+        contentValues.put(DatabaseOpenHelper.COL_PASSWORD, player.getPassword());
         contentValues.put(DatabaseOpenHelper.COL_SCORE, player.getScore());
-        contentValues.put(DatabaseOpenHelper.COL_IMAGE, player.getImage());
 
         return mDatabase.insert(DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, contentValues);
     }
@@ -51,16 +52,16 @@ public class DatabaseManager {
 
             while (cursor.moveToNext()) {
                 int indexId = cursor.getColumnIndex(DatabaseOpenHelper.COL_ID);
-                int indexName = cursor.getColumnIndex(DatabaseOpenHelper.COL_NAME);
+                int indexName = cursor.getColumnIndex(DatabaseOpenHelper.COL_USERNAME);
+                int indexPassword = cursor.getColumnIndex(DatabaseOpenHelper.COL_PASSWORD);
                 int indexScore = cursor.getColumnIndex(DatabaseOpenHelper.COL_SCORE);
-                int indexImage = cursor.getColumnIndex(DatabaseOpenHelper.COL_IMAGE);
 
                 int id = cursor.getInt(indexId);
                 String name = cursor.getString(indexName);
+                String password = cursor.getString(indexPassword);
                 int score = cursor.getInt(indexScore);
-                String image = cursor.getString(indexImage);
 
-                Player player = new Player(id, name, score, image);
+                Player player = new Player(id, name, password, score);
 
                 results.add(player);
             }
@@ -89,9 +90,8 @@ public class DatabaseManager {
     public static long update(Player player, Player other) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseOpenHelper.COL_ID, other.getId());
-        contentValues.put(DatabaseOpenHelper.COL_NAME, other.getName());
+        contentValues.put(DatabaseOpenHelper.COL_USERNAME, other.getUsername());
         contentValues.put(DatabaseOpenHelper.COL_SCORE, other.getScore());
-        contentValues.put(DatabaseOpenHelper.COL_IMAGE, other.getImage());
         return mDatabase.update(DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id=" + player.getId(), null);
     }
 
@@ -101,5 +101,28 @@ public class DatabaseManager {
 
     static int getIndexOf(Player player) {
         return getAllMembers().indexOf(player);
+    }
+
+    public static Player findByName(String username) {
+        return query("username=" + username);
+    }
+
+    private static Player query(String where) {
+        Cursor cursor = mDatabase.query(DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, where, null, null, null, null);
+        int indexId = cursor.getColumnIndex(DatabaseOpenHelper.COL_ID);
+        int indexName = cursor.getColumnIndex(DatabaseOpenHelper.COL_PASSWORD);
+        int indexPassword = cursor.getColumnIndex(DatabaseOpenHelper.COL_PASSWORD);
+        int indexScore = cursor.getColumnIndex(DatabaseOpenHelper.COL_SCORE);
+
+        int id = cursor.getInt(indexId);
+        String name = cursor.getString(indexName);
+        String password = cursor.getString(indexPassword);
+        int score = cursor.getInt(indexScore);
+
+        Player player = new Player(id, name, password, score);
+
+        cursor.close();
+
+        return password == null ? null : player;
     }
 }

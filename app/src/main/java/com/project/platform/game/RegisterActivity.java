@@ -1,6 +1,7 @@
 package com.project.platform.game;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,29 +11,33 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button submitButton;
-    Button submitButton2;
-    EditText passwordEditText;
-    EditText confirmEditText;
-    EditText EmailEditText;
+    Button register;
+    Button login;
+    EditText password;
+    EditText confirmPassword;
+    EditText username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        submitButton = findViewById(R.id.button_submit_regsister);
-        passwordEditText = findViewById(R.id.edit_text_password);
-        confirmEditText = findViewById(R.id.edit_text_confirm);
-        EmailEditText = findViewById(R.id.edit_text_email);
-        submitButton2 = findViewById(R.id.button_submit_LogIn_Main);
+        register = findViewById(R.id.register);
+        password = findViewById(R.id.password);
+        confirmPassword = findViewById(R.id.confirm_password);
+        username = findViewById(R.id.username);
+        login = findViewById(R.id.login);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        final SharedPreferences.Editor editor = getSharedPreferences("Register", MODE_PRIVATE).edit();
+
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (EmailEditText.getText().toString().length() > 0) {
+                String s = username.getText().toString();
+                if (s.length() > 0 && DatabaseManager.findByName(s) == null) {
 
-                    if (passwordEditText.getText().toString().equals(confirmEditText.getText().toString()) && passwordEditText.length() > 0) {
+                    if (password.getText().toString().equals(confirmPassword.getText().toString()) && password.length() > 0) {
+                        editor.putBoolean("isLoggedIn", true).apply();
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -44,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-        submitButton2.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, LogInActivity.class);

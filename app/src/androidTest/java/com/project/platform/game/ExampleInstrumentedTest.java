@@ -1,4 +1,4 @@
-package com.miretsky.ron.myapp;
+package com.project.platform.game;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -19,8 +19,6 @@
             android:screenOrientation="locked"/>
         <activity android:name="com.project.platform.game.ForgotPasswordActivity"
             android:screenOrientation="locked"/>
-        <activity android:name="com.project.platform.game.NewPassActivity"
-            android:screenOrientation="locked"/>
         <activity android:name="com.project.platform.game.SplashActivity"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -29,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.project.platform.game.ConfirmCodeActivity" />
     </application>
 
 </manifest>
