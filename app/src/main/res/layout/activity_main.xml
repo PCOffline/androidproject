@@ -6,6 +6,38 @@
     android:orientation="vertical"
     tools:context="com.project.platform.game.MainActivity">
 
+    <TextView
+        android:id="@+id/timer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/score_text"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:gravity="center"
+        android:visibility="invisible"
+        tools:text="2:00" />
+
+    <TextView
+        android:id="@+id/score_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:visibility="invisible"
+        tools:ignore="RelativeOverlap"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/announcement_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:text="You won!"
+        tools:textColor="#10c310" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -15,7 +47,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/image2"
-            android:src=""
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -23,7 +54,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/image4"
-            android:src=""
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -31,7 +61,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/image1"
-            android:src=""
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -39,7 +68,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/image3"
-            android:src=""
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>

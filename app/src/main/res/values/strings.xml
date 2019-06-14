@@ -68,5 +68,7 @@
     <string name="image103"></string>
     <string name="image104"></string>
     <string name="play">Play</string>
+    <string name="win_msg">You won!</string>
+    <string name="lose_msg">You lost!</string>
 
 </resources>
