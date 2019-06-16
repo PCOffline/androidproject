@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -23,14 +24,17 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout pauseLayout;
     TextView timer;
     TextView announcement;
+    RelativeLayout imagesView;
     CountDownTimer countDownTimer;
     Button play;
-    ImageButton[] images = {findViewById (R.id.image1), findViewById (R.id.image2), findViewById (R.id.image3), findViewById (R.id.image4)};
+    long p = 120000;
+    ImageButton[] images;
     private int stage = 0;
     private int score = 0;
     private int pressed;
     private int correct;
     private long leftMillis = 120000;
+    private TextView scoreTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
         timer = findViewById (R.id.timer_text);
         announcement = findViewById (R.id.announcement_text);
         play = findViewById (R.id.play);
+        scoreTxt = findViewById (R.id.score_text);
         pause = findViewById (R.id.pause_btn);
-
+        images = new ImageButton[]{findViewById (R.id.image1), findViewById (R.id.image2), findViewById (R.id.image3), findViewById (R.id.image4)};
+        imagesView = findViewById (R.id.images);
         String name;
         String password;
         if (savedInstanceState == null) {
@@ -59,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         player = new Player (name, password);
-        DatabaseManager.insert (player);
+        //DatabaseManager.insert (player);
 
         correct = new Random ().nextInt (4);
 
@@ -87,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 @SuppressLint("SetTextI18n")
                 @Override
                 public void onTick(long l) {
-                    timer.setText (l / 60000 + " :" + (l / 1000) % 60);
+                    timer.setText (l / 60000 + ":" + (l / 1000) % 60);
                     leftMillis = l;
                 }
 
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         winGame ();
                 }
             };
+            countDownTimer.start ();
         } else {
             countDownTimer.cancel ();
         }
@@ -115,16 +122,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void nextRound() {
-        stage++;
+        for (ImageButton img : images) {
+            img.setEnabled (false);
+        }
         if (correct == pressed) {
             score++;
-            images[pressed].setBackgroundResource (R.drawable.win_border);
+            scoreTxt.setText (score);
+            announce ("Correct!", Color.GREEN);
         } else {
-            images[pressed].setBackgroundResource (R.drawable.lose_border);
+            announce ("Wrong!", Color.RED);
         }
-        for (int i = 0; i <= 3; i++) {
-            images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
-        }
+        stage++;
+
+                /*for (int i = 0; i <= 3; i++) {
+                    images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
+                }*/
         correct = new Random ().nextInt (4);
     }
 
@@ -145,15 +157,19 @@ public class MainActivity extends AppCompatActivity {
         return getResources ().getIdentifier ("image" + s, "drawable", packageName);
     }
 
-    public void settings(View view) {
+  /*  public void settings(View view) {
 
-    }
+    }*/
 
     public void resume(View view) {
+        pauseLayout.setVisibility (View.GONE);
+        buttonsVisible (true);
         toggleTimer (true);
     }
 
     public void pause(View view) {
+        pauseLayout.setVisibility (View.VISIBLE);
+        buttonsVisible (false);
         toggleTimer (false);
     }
 
@@ -161,15 +177,15 @@ public class MainActivity extends AppCompatActivity {
         play.setVisibility (View.GONE);
         timer.setVisibility (View.VISIBLE);
         buttonsVisible (true);
+        scoreTxt.setVisibility (View.VISIBLE);
+        timer.setVisibility (View.VISIBLE);
         toggleTimer (true);
 
     }
 
     private void buttonsVisible(boolean mode) {
         int visibility = mode ? View.VISIBLE : View.GONE;
-        for (ImageButton imageButton : images) {
-            imageButton.setVisibility (visibility);
-        }
+        imagesView.setVisibility (visibility);
         pause.setVisibility (visibility);
     }
 }

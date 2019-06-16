@@ -10,10 +10,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Database manipulation class for Players Leaderboard table
- */
-
 public class DatabaseManager {
 
     private static SQLiteDatabase mDatabase;

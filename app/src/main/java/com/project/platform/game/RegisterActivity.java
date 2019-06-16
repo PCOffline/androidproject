@@ -34,11 +34,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String s = username.getText ().toString ();
-                if (s.length () > 0 && DatabaseManager.findByName (s) == null) {
+                if (s.length () > 0 //&& DatabaseManager.findByName (s) == null
+                ) {
                     if (password.getText ().toString ().equals (confirmPassword.getText ().toString ()) && password.length () > 0) {
                         editor.putBoolean ("isLoggedIn", true).apply ();
                         Intent intent = new Intent (RegisterActivity.this, MainActivity.class);
                         startActivity (intent);
+                        intent.putExtra ("username", username.getText ().toString ());
+                        intent.putExtra ("password", password.getText ().toString ());
                         finish ();
                     } else {
                         Toast.makeText (RegisterActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show ();
