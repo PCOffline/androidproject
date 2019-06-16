@@ -19,8 +19,8 @@ public class DatabaseManager {
     private static SQLiteDatabase mDatabase;
 
     public DatabaseManager(Context context) {
-        DatabaseOpenHelper helper = new DatabaseOpenHelper(context);
-        mDatabase = helper.getWritableDatabase();
+        DatabaseOpenHelper helper = new DatabaseOpenHelper (context);
+        mDatabase = helper.getWritableDatabase ();
     }
 
     /**
@@ -31,97 +31,97 @@ public class DatabaseManager {
      */
 
     static long insert(Player player) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseOpenHelper.COL_ID, player.getId());
-        contentValues.put(DatabaseOpenHelper.COL_USERNAME, player.getUsername());
-        contentValues.put(DatabaseOpenHelper.COL_USERNAME, player.getUsername());
-        contentValues.put(DatabaseOpenHelper.COL_PASSWORD, player.getPassword());
-        contentValues.put(DatabaseOpenHelper.COL_SCORE, player.getScore());
+        ContentValues contentValues = new ContentValues ();
+        contentValues.put (DatabaseOpenHelper.COL_ID, player.getId ());
+        contentValues.put (DatabaseOpenHelper.COL_USERNAME, player.getUsername ());
+        contentValues.put (DatabaseOpenHelper.COL_USERNAME, player.getUsername ());
+        contentValues.put (DatabaseOpenHelper.COL_PASSWORD, player.getPassword ());
+        contentValues.put (DatabaseOpenHelper.COL_SCORE, player.getScore ());
 
-        return mDatabase.insert(DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, contentValues);
+        return mDatabase.insert (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, contentValues);
     }
 
     private static List<Player> getAllMembers() {
-        Cursor cursor = mDatabase.query(DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, null, null, null, null, null);
+        Cursor cursor = mDatabase.query (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, null, null, null, null, null);
 
-        List<Player> results = Collections.emptyList();
+        List<Player> results = Collections.emptyList ();
 
-        if (cursor.getColumnCount() > 0) {
+        if (cursor.getColumnCount () > 0) {
 
-            results = new ArrayList<>();
+            results = new ArrayList<> ();
 
-            while (cursor.moveToNext()) {
-                int indexId = cursor.getColumnIndex(DatabaseOpenHelper.COL_ID);
-                int indexName = cursor.getColumnIndex(DatabaseOpenHelper.COL_USERNAME);
-                int indexPassword = cursor.getColumnIndex(DatabaseOpenHelper.COL_PASSWORD);
-                int indexScore = cursor.getColumnIndex(DatabaseOpenHelper.COL_SCORE);
+            while (cursor.moveToNext ()) {
+                int indexId = cursor.getColumnIndex (DatabaseOpenHelper.COL_ID);
+                int indexName = cursor.getColumnIndex (DatabaseOpenHelper.COL_USERNAME);
+                int indexPassword = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);
+                int indexScore = cursor.getColumnIndex (DatabaseOpenHelper.COL_SCORE);
 
-                int id = cursor.getInt(indexId);
-                String name = cursor.getString(indexName);
-                String password = cursor.getString(indexPassword);
-                int score = cursor.getInt(indexScore);
+                int id = cursor.getInt (indexId);
+                String name = cursor.getString (indexName);
+                String password = cursor.getString (indexPassword);
+                int score = cursor.getInt (indexScore);
 
-                Player player = new Player(id, name, password, score);
+                Player player = new Player (id, name, password, score);
 
-                results.add(player);
+                results.add (player);
             }
         }
 
-        cursor.close();
+        cursor.close ();
 
         return results;
     }
 
     private static List<Player> getMembersByScore() {
-        List<Player> res = getAllMembers();
-        Collections.sort(res, new Comparator<Player>() {
+        List<Player> res = getAllMembers ();
+        Collections.sort (res, new Comparator<Player> () {
             @Override
             public int compare(Player o1, Player o2) {
-                return Integer.compare(o1.getScore(), o2.getScore());
+                return Integer.compare (o1.getScore (), o2.getScore ());
             }
         });
         return res;
     }
 
     public static long delete(Player player) {
-        return mDatabase.delete(DatabaseOpenHelper.TABLE_NAME_PLAYERS, "id=" + player.getId(), null);
+        return mDatabase.delete (DatabaseOpenHelper.TABLE_NAME_PLAYERS, "id=" + player.getId (), null);
     }
 
     public static long update(Player player, Player other) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseOpenHelper.COL_ID, other.getId());
-        contentValues.put(DatabaseOpenHelper.COL_USERNAME, other.getUsername());
-        contentValues.put(DatabaseOpenHelper.COL_SCORE, other.getScore());
-        return mDatabase.update(DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id=" + player.getId(), null);
+        ContentValues contentValues = new ContentValues ();
+        contentValues.put (DatabaseOpenHelper.COL_ID, other.getId ());
+        contentValues.put (DatabaseOpenHelper.COL_USERNAME, other.getUsername ());
+        contentValues.put (DatabaseOpenHelper.COL_SCORE, other.getScore ());
+        return mDatabase.update (DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id=" + player.getId (), null);
     }
 
     static Player get(int id) {
-        return getAllMembers().get(id - 1);
+        return getAllMembers ().get (id - 1);
     }
 
     static int getIndexOf(Player player) {
-        return getAllMembers().indexOf(player);
+        return getAllMembers ().indexOf (player);
     }
 
     public static Player findByName(String username) {
-        return query("username=" + username);
+        return query ("username=" + username);
     }
 
     private static Player query(String where) {
-        Cursor cursor = mDatabase.query(DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, where, null, null, null, null);
-        int indexId = cursor.getColumnIndex(DatabaseOpenHelper.COL_ID);
-        int indexName = cursor.getColumnIndex(DatabaseOpenHelper.COL_PASSWORD);
-        int indexPassword = cursor.getColumnIndex(DatabaseOpenHelper.COL_PASSWORD);
-        int indexScore = cursor.getColumnIndex(DatabaseOpenHelper.COL_SCORE);
+        Cursor cursor = mDatabase.query (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, where, null, null, null, null);
+        int indexId = cursor.getColumnIndex (DatabaseOpenHelper.COL_ID);
+        int indexName = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);
+        int indexPassword = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);
+        int indexScore = cursor.getColumnIndex (DatabaseOpenHelper.COL_SCORE);
 
-        int id = cursor.getInt(indexId);
-        String name = cursor.getString(indexName);
-        String password = cursor.getString(indexPassword);
-        int score = cursor.getInt(indexScore);
+        int id = cursor.getInt (indexId);
+        String name = cursor.getString (indexName);
+        String password = cursor.getString (indexPassword);
+        int score = cursor.getInt (indexScore);
 
-        Player player = new Player(id, name, password, score);
+        Player player = new Player (id, name, password, score);
 
-        cursor.close();
+        cursor.close ();
 
         return password == null ? null : player;
     }

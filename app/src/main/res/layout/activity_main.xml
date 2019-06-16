@@ -40,34 +40,39 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
         <ImageButton
             android:id="@+id/image1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/image2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            tools:src="@android:color/holo_blue_light"
             tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/image2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/image4"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_toEndOf="@id/image1"
+            tools:src="@android:color/holo_green_light"
             tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/image3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/image1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/image1"
+            tools:src="@android:color/holo_orange_light"
             tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/image4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/image3"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@id/image2"
+            android:layout_toEndOf="@id/image3"
+            tools:src="@android:color/holo_red_light"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
@@ -79,7 +84,9 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text="@string/play"
-        tools:ignore="RelativeOverlap" />
+        android:onClick="play"
+        tools:ignore="RelativeOverlap"
+        tools:visibility="invisible" />
 
     <LinearLayout
         android:id="@+id/pauseLayout"
@@ -88,18 +95,21 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@id/pauseLayout"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/resumeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="resume"
             android:text="@string/resume" />
 
         <Button
             android:id="@+id/settingsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="settings"
             android:text="@string/settings" />
     </LinearLayout>
 
@@ -112,6 +122,7 @@
         android:background="@android:color/transparent"
         android:contentDescription="@string/pause"
         android:scaleType="fitCenter"
+        android:onClick="pause"
         android:src="@drawable/pause" />
 
 

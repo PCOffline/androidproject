@@ -11,15 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name="com.project.platform.game.MainActivity"
-            android:screenOrientation="locked"/>
-        <activity android:name="com.project.platform.game.RegisterActivity"
-            android:screenOrientation="locked"/>
-        <activity android:name="com.project.platform.game.LogInActivity"
-            android:screenOrientation="locked"/>
-        <activity android:name="com.project.platform.game.ForgotPasswordActivity"
-            android:screenOrientation="locked"/>
-        <activity android:name="com.project.platform.game.SplashActivity"
+        <activity
+            android:name="com.project.platform.game.MainActivity"
+            android:screenOrientation="locked" />
+        <activity
+            android:name="com.project.platform.game.RegisterActivity"
+            android:screenOrientation="locked" />
+        <activity
+            android:name="com.project.platform.game.LogInActivity"
+            android:screenOrientation="locked" />
+        <activity
+            android:name="com.project.platform.game.ForgotPasswordActivity"
+            android:screenOrientation="locked" />
+        <activity
+            android:name="com.project.platform.game.SplashActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

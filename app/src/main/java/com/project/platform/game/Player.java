@@ -53,7 +53,7 @@ public class Player {
     }
 
     public void add() {
-        DatabaseManager.insert(this);
-        this.id = DatabaseManager.get(DatabaseManager.getIndexOf(this)).id;
+        DatabaseManager.insert (this);
+        this.id = DatabaseManager.get (DatabaseManager.getIndexOf (this)).id;
     }
 }

@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,96 +21,74 @@ public class MainActivity extends AppCompatActivity {
     static Player player;
     ImageButton pause;
     LinearLayout pauseLayout;
-    Button resumeBtn;
-    Button settingsBtn;
-    Button playBtn;
     TextView timer;
     TextView announcement;
     CountDownTimer countDownTimer;
-    ImageButton[] images = new ImageButton[3];
+    Button play;
+    ImageButton[] images = {findViewById (R.id.image1), findViewById (R.id.image2), findViewById (R.id.image3), findViewById (R.id.image4)};
     private int stage = 0;
     private int score = 0;
     private int pressed;
+    private int correct;
+    private long leftMillis = 120000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        pause = findViewById(R.id.pause_btn);
-        pauseLayout = findViewById(R.id.pauseLayout);
-        resumeBtn = findViewById(R.id.resumeBtn);
-        settingsBtn = findViewById(R.id.settingsBtn);
-        playBtn = findViewById (R.id.play);
+        super.onCreate (savedInstanceState);
+        setContentView (R.layout.activity_main);
+        pauseLayout = findViewById (R.id.pauseLayout);
         timer = findViewById (R.id.timer_text);
         announcement = findViewById (R.id.announcement_text);
+        play = findViewById (R.id.play);
+        pause = findViewById (R.id.pause_btn);
 
         String name;
         String password;
         if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+            Bundle extras = getIntent ().getExtras ();
             if (extras == null) {
                 name = null;
                 password = null;
             } else {
-                name = extras.getString("username");
-                password = extras.getString("password");
+                name = extras.getString ("username");
+                password = extras.getString ("password");
             }
         } else {
-            name = (String) savedInstanceState.getSerializable("username");
-            password = (String) savedInstanceState.getSerializable("password");
+            name = (String) savedInstanceState.getSerializable ("username");
+            password = (String) savedInstanceState.getSerializable ("password");
         }
 
-        player = new Player(name, password);
-        DatabaseManager.insert(player);
+        player = new Player (name, password);
+        DatabaseManager.insert (player);
 
-        pauseLayout.setVisibility(View.INVISIBLE);
+        correct = new Random ().nextInt (4);
 
-
-        pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pause();
-                pauseLayout.setVisibility(View.VISIBLE);
-            }
-        });
-
-        resumeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resume();
-                pauseLayout.setVisibility(View.INVISIBLE);
-            }
-        });
-
-        playBtn.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
-
+        for (int i = 0; i < images.length; i++) {
+            final int finalI = i;
+            images[i].setOnClickListener (new View.OnClickListener () {
+                @Override
+                public void onClick(View view) {
+                    pressed = finalI;
+                    nextRound ();
+                }
+            });
+        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return event.getAction() == MotionEvent.ACTION_DOWN;
+        return event.getAction () == MotionEvent.ACTION_DOWN;
     }
 
-    private void pause() {
-        toggleTimer (false);
-    }
-
-    private void resume() {
-        toggleTimer (true);
-    }
 
     private void toggleTimer(boolean mode) {
         if (mode) {
-            countDownTimer = new CountDownTimer (120000, 1000) {
+            countDownTimer = new CountDownTimer (leftMillis, 1000) {
                 @SuppressLint("SetTextI18n")
                 @Override
                 public void onTick(long l) {
                     timer.setText (l / 60000 + " :" + (l / 1000) % 60);
+                    leftMillis = l;
                 }
 
                 @Override
@@ -126,33 +105,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loseGame() {
-        announce (getString ("lose_msg"), Color.RED);
+        announce (getString (R.string.lose_msg), Color.RED);
 
     }
 
     private void winGame() {
-        announce (getString ("win_msg"), Color.GREEN);
-
+        announce (getString (R.string.lose_msg), Color.GREEN);
+        nextRound ();
     }
 
     private void nextRound() {
-        if (pressed == 3) {
-            winRound ();
+        stage++;
+        if (correct == pressed) {
+            score++;
+            images[pressed].setBackgroundResource (R.drawable.win_border);
         } else {
-            loseRound ();
+            images[pressed].setBackgroundResource (R.drawable.lose_border);
         }
         for (int i = 0; i <= 3; i++) {
-            //images[i].setBackground (getString ("image" + stage + (i + 1)));
-            //images[i].setBackground() --> we need to download images
+            images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
         }
-    }
-
-    private void loseRound() {
-
-    }
-
-    private void winRound() {
-
+        correct = new Random ().nextInt (4);
     }
 
     private void announce(final String message, final int color) {
@@ -167,11 +140,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String getString(String s) {
+    private int getDrawable(String s) {
         String packageName = getPackageName ();
-        int resId = getResources ().getIdentifier (s, "string", packageName);
-        return getString (resId);
+        return getResources ().getIdentifier ("image" + s, "drawable", packageName);
     }
 
+    public void settings(View view) {
+
+    }
+
+    public void resume(View view) {
+        toggleTimer (true);
+    }
+
+    public void pause(View view) {
+        toggleTimer (false);
+    }
+
+    public void play(View view) {
+        play.setVisibility (View.GONE);
+        timer.setVisibility (View.VISIBLE);
+        buttonsVisible (true);
+        toggleTimer (true);
+
+    }
+
+    private void buttonsVisible(boolean mode) {
+        int visibility = mode ? View.VISIBLE : View.GONE;
+        for (ImageButton imageButton : images) {
+            imageButton.setVisibility (visibility);
+        }
+        pause.setVisibility (visibility);
+    }
 }
 

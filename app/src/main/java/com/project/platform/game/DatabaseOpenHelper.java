@@ -30,20 +30,20 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     private final Context mContext;
 
     public DatabaseOpenHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super (context, DATABASE_NAME, null, DATABASE_VERSION);
         mContext = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_PLAYERS);
-        Toast.makeText(mContext, "onCreate", Toast.LENGTH_SHORT).show();
+        db.execSQL (CREATE_TABLE_PLAYERS);
+        Toast.makeText (mContext, "onCreate", Toast.LENGTH_SHORT).show ();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DROP_TABLE_GYM_MEMBERS);
-        onCreate(db);
-        Toast.makeText(mContext, "onUpgrade", Toast.LENGTH_SHORT).show();
+        db.execSQL (DROP_TABLE_GYM_MEMBERS);
+        onCreate (db);
+        Toast.makeText (mContext, "onUpgrade", Toast.LENGTH_SHORT).show ();
     }
 }
