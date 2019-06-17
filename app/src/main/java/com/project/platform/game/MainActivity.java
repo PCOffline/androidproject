@@ -19,7 +19,6 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    static Player player;
     ImageButton pause;
     LinearLayout pauseLayout;
     TextView timer;
@@ -27,14 +26,16 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout imagesView;
     CountDownTimer countDownTimer;
     Button play;
-    long p = 120000;
     ImageButton[] images;
+    static Player player;
+    DatabaseManager databaseManager = new DatabaseManager (this);
+    private TextView scoreTxt;
+
     private int stage = 0;
     private int score = 0;
     private int pressed;
     private int correct;
     private long leftMillis = 120000;
-    private TextView scoreTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
             password = (String) savedInstanceState.getSerializable ("password");
         }
 
-        player = new Player (name, password);
-        //DatabaseManager.insert (player);
+        player = new Player (name, password, this);
+        databaseManager.insert (player);
 
         correct = new Random ().nextInt (4);
 

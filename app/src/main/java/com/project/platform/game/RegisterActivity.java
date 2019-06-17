@@ -16,6 +16,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     EditText confirmPassword;
     EditText username;
+    DatabaseManager databaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById (R.id.confirm_password);
         username = findViewById (R.id.username);
         login = findViewById (R.id.login);
+        databaseManager = new DatabaseManager (RegisterActivity.this);
 
         final SharedPreferences.Editor editor = getSharedPreferences ("Register", MODE_PRIVATE).edit ();
 
@@ -34,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String s = username.getText ().toString ();
-                if (s.length () > 0 //&& DatabaseManager.findByName (s) == null
+                if (s.length () > 0 && databaseManager.findByName (s) == null
                 ) {
                     if (password.getText ().toString ().equals (confirmPassword.getText ().toString ()) && password.length () > 0) {
                         editor.putBoolean ("isLoggedIn", true).apply ();

@@ -12,19 +12,19 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name="com.project.platform.game.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="locked" />
         <activity
-            android:name="com.project.platform.game.RegisterActivity"
+            android:name=".RegisterActivity"
             android:screenOrientation="locked" />
         <activity
-            android:name="com.project.platform.game.LogInActivity"
+            android:name=".LogInActivity"
             android:screenOrientation="locked" />
         <activity
-            android:name="com.project.platform.game.ForgotPasswordActivity"
+            android:name=".ForgotPasswordActivity"
             android:screenOrientation="locked" />
         <activity
-            android:name="com.project.platform.game.SplashActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

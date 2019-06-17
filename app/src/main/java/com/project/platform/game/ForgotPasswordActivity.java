@@ -19,6 +19,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     Button submitPassword;
     EditText password;
 
+    DatabaseManager databaseManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -33,6 +35,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         password = findViewById (R.id.password);
         submitPassword = findViewById (R.id.submit_password);
         final ForgotPasswordActivity context = ForgotPasswordActivity.this;
+        databaseManager = new DatabaseManager (this);
 
         submitEmail.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -63,7 +66,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 String password = context.password.getText ().toString ();
                 Player player = MainActivity.player;
 
-                DatabaseManager.update (player, new Player (player.getUsername (), password));
+                databaseManager.update (player, new Player (player.getUsername (), password, ForgotPasswordActivity.this));
                 player.setPassword (password);
             }
         });

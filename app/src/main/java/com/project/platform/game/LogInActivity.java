@@ -15,6 +15,7 @@ public class LogInActivity extends AppCompatActivity {
     Button forgotPassBtn;
     EditText password;
     EditText username;
+    DatabaseManager databaseManager = new DatabaseManager (this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,9 @@ public class LogInActivity extends AppCompatActivity {
                 String username = LogInActivity.this.username.getText ().toString ();
                 String password = LogInActivity.this.password.getText ().toString ();
                 if (username.length () > 0
-                        //&& DatabaseManager.findByName (username) != null
+                        && databaseManager.findByName (username) != null
                         && password.length () > 0
-                    //&& DatabaseManager.findByName ("").getPassword ().equals (password)
+                        && databaseManager.findByName ("").getPassword ().equals (password)
                 ) {
                     editor.putBoolean ("isLoggedIn", true).apply ();
                     Intent intent = new Intent (LogInActivity.this, MainActivity.class);

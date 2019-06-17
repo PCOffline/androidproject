@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DatabaseManager {
 
-    private static SQLiteDatabase mDatabase;
+    private SQLiteDatabase mDatabase;
 
     public DatabaseManager(Context context) {
         DatabaseOpenHelper helper = new DatabaseOpenHelper (context);
@@ -26,7 +26,7 @@ public class DatabaseManager {
      * @return long value to check for success
      */
 
-    static long insert(Player player) {
+    long insert(Player player) {
         ContentValues contentValues = new ContentValues ();
         contentValues.put (DatabaseOpenHelper.COL_ID, player.getId ());
         contentValues.put (DatabaseOpenHelper.COL_USERNAME, player.getUsername ());
@@ -37,7 +37,7 @@ public class DatabaseManager {
         return mDatabase.insert (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, contentValues);
     }
 
-    private static List<Player> getAllMembers() {
+    private List<Player> getAllMembers() {
         Cursor cursor = mDatabase.query (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, null, null, null, null, null);
 
         List<Player> results = Collections.emptyList ();
@@ -68,7 +68,7 @@ public class DatabaseManager {
         return results;
     }
 
-    private static List<Player> getMembersByScore() {
+    private List<Player> getMembersByScore() {
         List<Player> res = getAllMembers ();
         Collections.sort (res, new Comparator<Player> () {
             @Override
@@ -79,31 +79,31 @@ public class DatabaseManager {
         return res;
     }
 
-    public static long delete(Player player) {
-        return mDatabase.delete (DatabaseOpenHelper.TABLE_NAME_PLAYERS, "id=" + player.getId (), null);
+    public long delete(Player player) {
+        return mDatabase.delete (DatabaseOpenHelper.TABLE_NAME_PLAYERS, DatabaseOpenHelper.COL_ID + "='" + player.getId () + "'", null);
     }
 
-    public static long update(Player player, Player other) {
+    public long update(Player player, Player other) {
         ContentValues contentValues = new ContentValues ();
         contentValues.put (DatabaseOpenHelper.COL_ID, other.getId ());
         contentValues.put (DatabaseOpenHelper.COL_USERNAME, other.getUsername ());
         contentValues.put (DatabaseOpenHelper.COL_SCORE, other.getScore ());
-        return mDatabase.update (DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, "id=" + player.getId (), null);
+        return mDatabase.update (DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, DatabaseOpenHelper.COL_ID"='" + player.getId () + "'", null);
     }
 
-    static Player get(int id) {
+    Player get(int id) {
         return getAllMembers ().get (id - 1);
     }
 
-    static int getIndexOf(Player player) {
+    int getIndexOf(Player player) {
         return getAllMembers ().indexOf (player);
     }
 
-    public static Player findByName(String username) {
-        return query ("username=" + username);
+    public Player findByName(String username) {
+        return query (DatabaseOpenHelper.COL_USERNAME + "='" + username + "'");
     }
 
-    private static Player query(String where) {
+    private Player query(String where) {
         Cursor cursor = mDatabase.query (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, where, null, null, null, null);
         int indexId = cursor.getColumnIndex (DatabaseOpenHelper.COL_ID);
         int indexName = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);

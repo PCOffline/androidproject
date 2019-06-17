@@ -1,16 +1,20 @@
 package com.project.platform.game;
 
+import android.content.Context;
+
 public class Player {
     private int id;
     private String username;
     private int score;
     private String password;
+    private DatabaseManager databaseManager;
 
-    Player(String username, String password) {
+    Player(String username, String password, Context context) {
         this.id = -1;
         this.username = username;
         this.score = 0;
         this.password = password;
+        this.databaseManager = new DatabaseManager (context);
     }
 
     Player(int id, String username, String password, int score) {
@@ -53,7 +57,7 @@ public class Player {
     }
 
     public void add() {
-        DatabaseManager.insert (this);
-        this.id = DatabaseManager.get (DatabaseManager.getIndexOf (this)).id;
+        databaseManager.insert (this);
+        this.id = databaseManager.get (databaseManager.getIndexOf (this)).id;
     }
 }
