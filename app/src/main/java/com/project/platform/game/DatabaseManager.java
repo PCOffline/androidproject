@@ -213,4 +213,21 @@ public class DatabaseManager {
     public void deleteAll() {
         mDatabase.delete (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, null);
     }
+
+    public List<Player> sortByScore () {
+        List<Player> players = getAllMembers();
+        List<Player> newList = new ArrayList<Player>();
+
+
+        Player max = players.get(0);
+        for (int i = 0; i < players.size(); i++) {
+            for (Player p : players) {
+                if (max.getScore() < p.getScore())
+                    max = p;
+            }
+            newList.add(max);
+        }
+
+        return newList;
+    }
 }

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".ScoreActivity">
+
+    <TextView
+        android:id="@+id/first_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/_1st"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/first_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/first_text"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        tools:text="Player" />
+
+    <TextView
+        android:id="@+id/first_score"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/first_player"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        tools:text="Score" />
+
+    <TextView
+        android:id="@+id/second_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/first_text"
+        android:layout_marginEnd="75dp"
+        android:text="@string/_2nd"
+        android:textSize="30sp"
+        tools:ignore="RelativeOverlap" />
+
+    <TextView
+        android:id="@+id/second_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/second_text"
+        android:layout_toStartOf="@+id/first_player"
+        android:layout_marginEnd="40dp"
+        android:textSize="30sp"
+        tools:text="Player" />
+
+    <TextView
+        android:id="@+id/second_score"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/second_player"
+        android:layout_toStartOf="@+id/first_score"
+        android:layout_marginEnd="45dp"
+        android:textSize="30sp"
+        tools:text="Score" />
+
+    <TextView
+        android:id="@+id/third_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/first_text"
+        android:layout_marginStart="75dp"
+        android:text="@string/_3rd"
+        android:textSize="30sp"
+        />
+
+    <TextView
+        android:id="@+id/third_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/second_text"
+        android:layout_toEndOf="@+id/first_player"
+        android:layout_marginStart="40dp"
+        android:textSize="30sp"
+        tools:text="Player" />
+
+    <TextView
+        android:id="@+id/third_score"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/second_player"
+        android:layout_toEndOf="@+id/first_score"
+        android:layout_marginStart="45dp"
+        android:textSize="30sp"
+        tools:text="Score" />
+
+    <TextView
+        android:id="@+id/you_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_stats"
+        android:textSize="40sp"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/you_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Player"
+        android:textSize="40sp"
+        android:layout_below="@+id/you_text"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/you_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/you_username"
+        android:layout_centerHorizontal="true"
+        tools:text="Score"
+        android:textSize="40sp"/>
+    
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_to_main_screen"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/you_score"
+        android:textSize="30sp"
+        android:textAllCaps="false"
+        android:layout_marginTop="75dp"/>
+</RelativeLayout>

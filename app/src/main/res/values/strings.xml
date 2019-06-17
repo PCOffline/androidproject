@@ -18,5 +18,10 @@
     <string name="play">Play</string>
     <string name="win_msg">You won!</string>
     <string name="lose_msg">You lost!</string>
+    <string name="_1st">1st</string>
+    <string name="_2nd">2nd</string>
+    <string name="_3rd">3rd</string>
+    <string name="your_stats">Your Stats</string>
+    <string name="back_to_main_screen">Back to Main Screen</string>
 
 </resources>
