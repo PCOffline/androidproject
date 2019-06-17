@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -43,23 +44,40 @@ public class DatabaseManager {
         List<Player> results = Collections.emptyList ();
 
         if (cursor.getColumnCount () > 0) {
-
+            System.out.println (Arrays.toString (cursor.getColumnNames ()));
             results = new ArrayList<> ();
 
             while (cursor.moveToNext ()) {
-                int indexId = cursor.getColumnIndex (DatabaseOpenHelper.COL_ID);
-                int indexName = cursor.getColumnIndex (DatabaseOpenHelper.COL_USERNAME);
-                int indexPassword = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);
-                int indexScore = cursor.getColumnIndex (DatabaseOpenHelper.COL_SCORE);
+                try {
+                    int indexId = cursor.getColumnIndex (DatabaseOpenHelper.COL_ID);
+                    int indexName = cursor.getColumnIndex (DatabaseOpenHelper.COL_USERNAME);
+                    int indexPassword = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);
+                    int indexScore = cursor.getColumnIndex (DatabaseOpenHelper.COL_SCORE);
 
-                int id = cursor.getInt (indexId);
-                String name = cursor.getString (indexName);
-                String password = cursor.getString (indexPassword);
-                int score = cursor.getInt (indexScore);
+                    int id = cursor.getInt (indexId);
+                    String name = cursor.getString (indexName);
+                    String password = cursor.getString (indexPassword);
+                    int score = cursor.getInt (indexScore);
 
-                Player player = new Player (id, name, password, score);
+                    Player player = new Player (id, name, password, score);
 
-                results.add (player);
+                    results.add (player);
+                } catch (IllegalStateException e) {
+                    System.out.println ("Catch");
+                    int indexId = cursor.getColumnIndex ("Id");
+                    int indexName = cursor.getColumnIndex ("Username");
+                    int indexPassword = cursor.getColumnIndex ("Password");
+                    int indexScore = cursor.getColumnIndex ("Score");
+
+                    int id = cursor.getInt (indexId);
+                    String name = cursor.getString (indexName);
+                    String password = cursor.getString (indexPassword);
+                    int score = cursor.getInt (indexScore);
+
+                    Player player = new Player (id, name, password, score);
+
+                    results.add (player);
+                }
             }
         }
 
@@ -100,7 +118,7 @@ public class DatabaseManager {
     }
 
     public Player findByName(String username) {
-        return query (DatabaseOpenHelper.COL_USERNAME + "='" + username + "'");
+        return query (DatabaseOpenHelper.COL_USERNAME + "=" + username);
     }
 
     private Player query(String where) {
@@ -120,10 +138,14 @@ public class DatabaseManager {
         cursor.close ();
 
         return password == null ? null : player;*/
+        if (getAllMembers () == null)
+            return null;
         for (Player p : getAllMembers ()) {
+            if (p.getId () == -1)
+                return null;
             if (where.contains ("!=")) {
                 String s = where.split ("!=")[1];
-                int i = Integer.parseInt (s);
+                int i = s.matches ("^d+$") ? Integer.parseInt (s) : -1;
 
 
                 if ((where.contains ("id")
@@ -137,7 +159,7 @@ public class DatabaseManager {
                     return p;
             } else if (where.contains ("=")) {
                 String s = where.split ("=")[1];
-                int i = Integer.parseInt (s);
+                int i = s.matches ("^d+$") ? Integer.parseInt (s) : -1;
 
 
                 if ((where.contains ("id")
@@ -159,7 +181,11 @@ public class DatabaseManager {
                     return p;
             } else if (where.contains ("<")) {
                 String s = where.split ("<")[1];
-                int i = Integer.parseInt (s);
+                int i;
+                if (s.matches ("^d+$"))
+                    i = Integer.parseInt (s);
+                else
+                    return null;
 
                 if ((where.contains ("id")
                         && p.getId () < i)
@@ -168,7 +194,11 @@ public class DatabaseManager {
                     return p;
             } else if (where.contains (">")) {
                 String s = where.split (">")[1];
-                int i = Integer.parseInt (s);
+                int i;
+                if (s.matches ("^d+$"))
+                    i = Integer.parseInt (s);
+                else
+                    return null;
 
                 if ((where.contains ("id")
                         && p.getId () > i)

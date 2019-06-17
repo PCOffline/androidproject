@@ -15,58 +15,6 @@
     <string name="username">username</string>
     <string name="register">Register</string>
     <string name="signed_in">Already Have an Account?</string>
-
-    <!-- Images -->
-
-    <string name="image11"></string>
-    <string name="image12"></string>
-    <string name="image13"></string>
-    <string name="image14"></string>
-
-    <string name="image21"></string>
-    <string name="image22"></string>
-    <string name="image23"></string>
-    <string name="image24"></string>
-
-    <string name="image31"></string>
-    <string name="image32"></string>
-    <string name="image33"></string>
-    <string name="image34"></string>
-
-    <string name="image41"></string>
-    <string name="image42"></string>
-    <string name="image43"></string>
-    <string name="image44"></string>
-
-    <string name="image51"></string>
-    <string name="image52"></string>
-    <string name="image53"></string>
-    <string name="image54"></string>
-
-    <string name="image61"></string>
-    <string name="image62"></string>
-    <string name="image63"></string>
-    <string name="image64"></string>
-
-    <string name="image71"></string>
-    <string name="image72"></string>
-    <string name="image73"></string>
-    <string name="image74"></string>
-
-    <string name="image81"></string>
-    <string name="image82"></string>
-    <string name="image83"></string>
-    <string name="image84"></string>
-
-    <string name="image91"></string>
-    <string name="image92"></string>
-    <string name="image93"></string>
-    <string name="image94"></string>
-
-    <string name="image101"></string>
-    <string name="image102"></string>
-    <string name="image103"></string>
-    <string name="image104"></string>
     <string name="play">Play</string>
     <string name="win_msg">You won!</string>
     <string name="lose_msg">You lost!</string>

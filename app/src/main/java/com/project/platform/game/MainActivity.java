@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     Button play;
     ImageButton[] images;
     static Player player;
-    DatabaseManager databaseManager = new DatabaseManager (this);
+    DatabaseManager databaseManager;
+
     private TextView scoreTxt;
 
     private int stage = 0;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        databaseManager = new DatabaseManager (this);
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
         pauseLayout = findViewById (R.id.pauseLayout);
