@@ -15,7 +15,7 @@ public class LogInActivity extends AppCompatActivity {
     Button forgotPassBtn;
     EditText password;
     EditText username;
-    DatabaseManager databaseManager = new DatabaseManager (this);
+    DatabaseManager databaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class LogInActivity extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences ("loginActivity", MODE_PRIVATE);
         final SharedPreferences.Editor editor = sp.edit ();
-
+        databaseManager = new DatabaseManager(this);
         loginBtn = findViewById (R.id.login);
         username = findViewById (R.id.username);
         password = findViewById (R.id.password);

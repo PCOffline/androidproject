@@ -10,10 +10,11 @@ public class Player {
     private DatabaseManager databaseManager;
 
     Player(String username, String password, Context context) {
+        this.databaseManager = new DatabaseManager (context);
+        this.id = databaseManager.sortByScore().size();
         this.username = username;
         this.score = 0;
         this.password = password;
-        this.databaseManager = new DatabaseManager (context);
     }
 
     Player(int id, String username, String password, int score) {

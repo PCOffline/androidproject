@@ -1,16 +1,23 @@
 package com.project.platform.game;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -26,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
     Button play;
     ImageButton[] images;
     DatabaseManager databaseManager;
+    Button add;
 
     private TextView scoreTxt;
 
-    private int stage = 0;
+    private int stage = -1;
     private int score = 0;
     private int pressed;
     private int correct;
@@ -48,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         pause = findViewById (R.id.pause_btn);
         images = new ImageButton[]{findViewById (R.id.image1), findViewById (R.id.image2), findViewById (R.id.image3), findViewById (R.id.image4)};
         imagesView = findViewById (R.id.images);
+        add = findViewById(R.id.add);
         String name;
         String password;
         if (savedInstanceState == null) {
@@ -64,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
             password = (String) savedInstanceState.getSerializable ("password");
         }
 
-        databaseManager.deleteAll ();
-
         player = new Player (name, password, this);
+        try {
         databaseManager.insert (player);
+        } catch (SQLiteConstraintException e) {
+            Toast.makeText(this, "This account already exists", Toast.LENGTH_LONG).show();
+        }
 
         correct = new Random ().nextInt (4);
 
@@ -80,7 +91,50 @@ public class MainActivity extends AppCompatActivity {
                     nextRound ();
                 }
             });
+
+            add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("New Player");
+                    LinearLayout linearLayout = new LinearLayout(MainActivity.this);
+                    linearLayout.setOrientation(LinearLayout.VERTICAL);
+                    final EditText username = new EditText(MainActivity.this);
+                    username.setInputType(InputType.TYPE_CLASS_TEXT);
+                    username.setHint("Username");
+                    final EditText password = new EditText(MainActivity.this);
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    password.setHint("Password");
+                    final EditText score = new EditText(MainActivity.this);
+                    score.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    score.setHint("Score");
+                    linearLayout.addView(username);
+                    linearLayout.addView(password);
+                    linearLayout.addView(score);
+                    builder.setView(linearLayout);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String name = username.getText().toString();
+                            String pass = password.getText().toString();
+                            int scr = Integer.parseInt(score.getText().toString());
+                            databaseManager.insert(new Player(databaseManager.sortByScore().size(), name, pass, scr));
+                            Toast.makeText(MainActivity.this, "Added to Database", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                }
+            });
         }
+
+
     }
 
     @Override
@@ -121,13 +175,24 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (stage == 10) {
             buttonsVisible (false);
+            add.setVisibility(View.VISIBLE);
+            stage = 0;
             countDownTimer.cancel ();
             timer.setVisibility (View.GONE);
             scoreTxt.setVisibility (View.GONE);
-            //startActivity(new Intent(MainActivity.this, ScoreActivity.class));
-            //finish();
+            databaseManager.update(player, new Player(player.getId(), player.getUsername(), player.getPassword(), player.getScore() + score));
+            player.setScore(player.getScore() + score);
+            startActivity(new Intent(MainActivity.this, ScoreActivity.class));
+            finish();
         } else if (stage < 10 && timer.getText ().toString ().equals ("0:00")) {
-
+            buttonsVisible(false);
+            add.setVisibility(View.VISIBLE);
+            score = 0;
+            stage = 0;
+            timer.setVisibility(View.GONE);
+            scoreTxt.setVisibility(View.GONE);
+            startActivity(new Intent(MainActivity.this, ScoreActivity.class));
+            finish();
         } else {
             if (correct == pressed) {
                 score++;
@@ -168,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
     public void play(View view) {
         stage = 0;
         score = 0;
+        add.setVisibility(View.GONE);
         play.setVisibility (View.GONE);
         timer.setVisibility (View.VISIBLE);
         scoreTxt.setVisibility (View.VISIBLE);

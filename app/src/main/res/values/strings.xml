@@ -23,5 +23,9 @@
     <string name="_3rd">3rd</string>
     <string name="your_stats">Your Stats</string>
     <string name="back_to_main_screen">Back to Main Screen</string>
+    <string name="remove">remove</string>
+    <string name="_0">0</string>
+    <string name="timer">2:00</string>
+    <string name="add_to_database">Add to Database</string>
 
 </resources>
