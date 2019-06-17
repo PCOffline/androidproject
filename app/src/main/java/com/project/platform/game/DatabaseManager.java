@@ -88,7 +88,7 @@ public class DatabaseManager {
         contentValues.put (DatabaseOpenHelper.COL_ID, other.getId ());
         contentValues.put (DatabaseOpenHelper.COL_USERNAME, other.getUsername ());
         contentValues.put (DatabaseOpenHelper.COL_SCORE, other.getScore ());
-        return mDatabase.update (DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, DatabaseOpenHelper.COL_ID"='" + player.getId () + "'", null);
+        return mDatabase.update (DatabaseOpenHelper.TABLE_NAME_PLAYERS, contentValues, DatabaseOpenHelper.COL_ID + "='" + player.getId () + "'", null);
     }
 
     Player get(int id) {
