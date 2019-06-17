@@ -104,7 +104,7 @@ public class DatabaseManager {
     }
 
     private Player query(String where) {
-        Cursor cursor = mDatabase.query (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, where, null, null, null, null);
+        /*Cursor cursor = mDatabase.query (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, where, null, null, null, null);
         int indexId = cursor.getColumnIndex (DatabaseOpenHelper.COL_ID);
         int indexName = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);
         int indexPassword = cursor.getColumnIndex (DatabaseOpenHelper.COL_PASSWORD);
@@ -119,6 +119,64 @@ public class DatabaseManager {
 
         cursor.close ();
 
-        return password == null ? null : player;
+        return password == null ? null : player;*/
+        for (Player p : getAllMembers ()) {
+            if (where.contains ("!=")) {
+                String s = where.split ("!=")[1];
+                int i = Integer.parseInt (s);
+
+
+                if ((where.contains ("id")
+                        && p.getId () != i)
+                        || (where.contains ("username")
+                        && !p.getUsername ().equals (s))
+                        || (where.contains ("password")
+                        && !p.getPassword ().equals (s))
+                        || (where.contains ("score")
+                        && p.getScore () != i))
+                    return p;
+            } else if (where.contains ("=")) {
+                String s = where.split ("=")[1];
+                int i = Integer.parseInt (s);
+
+
+                if ((where.contains ("id")
+                        && p.getId () == i)
+                        || (where.contains ("username")
+                        && p.getUsername ().equals (s))
+                        || (where.contains ("password")
+                        && p.getPassword ().equals (s))
+                        || (where.contains ("score")
+                        && p.getScore () == i))
+                    return p;
+            } else if (where.contains ("contains")) {
+                String s = where.split (" contains ")[1];
+
+                if ((where.contains ("username")
+                        && p.getUsername ().contains (s))
+                        || (where.contains ("password")
+                        && p.getPassword ().contains (s)))
+                    return p;
+            } else if (where.contains ("<")) {
+                String s = where.split ("<")[1];
+                int i = Integer.parseInt (s);
+
+                if ((where.contains ("id")
+                        && p.getId () < i)
+                        || (where.contains ("score")
+                        && p.getScore () < i))
+                    return p;
+            } else if (where.contains (">")) {
+                String s = where.split (">")[1];
+                int i = Integer.parseInt (s);
+
+                if ((where.contains ("id")
+                        && p.getId () > i)
+                        || (where.contains ("score")
+                        && p.getScore () > i))
+                    return p;
+            }
+        }
+        return null;
     }
 }
