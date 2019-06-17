@@ -8,12 +8,12 @@ import android.widget.Toast;
 @SuppressWarnings("WeakerAccess")
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Stats";
-    public static final String TABLE_NAME_PLAYERS = "players";
+    public static final String TABLE_NAME_PLAYERS = "Players";
     public static final int DATABASE_VERSION = 1;
-    public static final String COL_ID = "id";
-    public static final String COL_USERNAME = "username";
-    public static final String COL_PASSWORD = "password";
-    public static final String COL_SCORE = "score";
+    public static final String COL_ID = "Id";
+    public static final String COL_USERNAME = "Username";
+    public static final String COL_PASSWORD = "Password";
+    public static final String COL_SCORE = "Score";
 
     private static final String CREATE_TABLE_PLAYERS = "create table " + TABLE_NAME_PLAYERS
             + " ("

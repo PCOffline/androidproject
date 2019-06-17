@@ -42,9 +42,9 @@ public class LogInActivity extends AppCompatActivity {
                 ) {
                     editor.putBoolean ("isLoggedIn", true).apply ();
                     Intent intent = new Intent (LogInActivity.this, MainActivity.class);
-                    startActivity (intent);
                     intent.putExtra ("username", username);
                     intent.putExtra ("password", password);
+                    startActivity (intent);
                     finish ();
                 } else {
                     Toast.makeText (LogInActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show ();

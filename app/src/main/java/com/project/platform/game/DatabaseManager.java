@@ -209,4 +209,8 @@ public class DatabaseManager {
         }
         return null;
     }
+
+    public void deleteAll() {
+        mDatabase.delete (DatabaseOpenHelper.TABLE_NAME_PLAYERS, null, null);
+    }
 }
