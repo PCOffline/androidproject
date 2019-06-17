@@ -40,10 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
                     if (password.getText ().toString ().equals (confirmPassword.getText ().toString ()) && password.length () > 0) {
                         editor.putBoolean ("isLoggedIn", true).apply ();
                         Intent intent = new Intent (RegisterActivity.this, MainActivity.class);
-                        startActivity (intent);
                         intent.putExtra ("username", username.getText ().toString ());
                         intent.putExtra ("password", password.getText ().toString ());
                         finish ();
+                        startActivity (intent);
                     } else {
                         Toast.makeText (RegisterActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show ();
                     }

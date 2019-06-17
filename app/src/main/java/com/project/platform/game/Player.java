@@ -10,7 +10,6 @@ public class Player {
     private DatabaseManager databaseManager;
 
     Player(String username, String password, Context context) {
-        this.id = -1;
         this.username = username;
         this.score = 0;
         this.password = password;

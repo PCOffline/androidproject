@@ -1,7 +1,6 @@
 package com.project.platform.game;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             password = (String) savedInstanceState.getSerializable ("password");
         }
 
+        databaseManager.deleteAll ();
+
         player = new Player (name, password, this);
         databaseManager.insert (player);
 
@@ -102,10 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    if (stage < 10)
-                        loseGame ();
-                    else
-                        winGame ();
+                    score = 0;
+                    nextRound ();
                 }
             };
             countDownTimer.start ();
@@ -114,46 +111,46 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loseGame() {
-        announce (getString (R.string.lose_msg), Color.RED);
-
-    }
-
-    private void winGame() {
-        announce (getString (R.string.lose_msg), Color.GREEN);
-        nextRound ();
-    }
-
+    @SuppressLint("DefaultLocale")
     private void nextRound() {
-        for (ImageButton img : images) {
-            img.setEnabled (false);
-        }
-        if (correct == pressed) {
-            score++;
-            scoreTxt.setText (score);
-            announce ("Correct!", Color.GREEN);
+        if (stage == 0) {
+            stage++;
+            score = 0;
+            scoreTxt.setText (0);
+            correct = new Random ().nextInt (4);
+            for (int i = 0; i < images.length; i++) {
+                if (i == correct)
+                    images[correct].setImageResource (getDrawable (stage + "4"));
+                else
+                    images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
+            }
+        } else if (stage == 10) {
+
+        } else if (stage < 10 && timer.getText ().toString ().equals ("0:00")) {
+
         } else {
-            announce ("Wrong!", Color.RED);
-        }
-        stage++;
+            for (ImageButton img : images) {
+                img.setEnabled (false);
+            }
+            if (correct == pressed) {
+                score++;
+                scoreTxt.setText (String.format ("%d", score));
+            }
+            stage++;
 
                 /*for (int i = 0; i <= 3; i++) {
                     images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
                 }*/
-        correct = new Random ().nextInt (4);
-    }
-
-    private void announce(final String message, final int color) {
-        new Timer ().schedule (new TimerTask () {
-            @Override
-            public void run() {
-                announcement.setText (message);
-                announcement.setTextColor (color);
-                announcement.setVisibility (View.VISIBLE);
+            correct = new Random ().nextInt (4);
+            for (int i = 0; i < images.length; i++) {
+                if (i == correct)
+                    images[correct].setImageResource (getDrawable (stage + "4"));
+                else
+                    images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
             }
-        }, 5000);
-
+            }
     }
+
 
     private int getDrawable(String s) {
         String packageName = getPackageName ();
@@ -183,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
         scoreTxt.setVisibility (View.VISIBLE);
         timer.setVisibility (View.VISIBLE);
         toggleTimer (true);
+        nextRound ();
 
     }
 
