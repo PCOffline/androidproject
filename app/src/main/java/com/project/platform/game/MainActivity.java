@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    static Player player;
     ImageButton pause;
     LinearLayout pauseLayout;
     TextView timer;
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     Button play;
     ImageButton[] images;
-    static Player player;
     DatabaseManager databaseManager;
 
     private TextView scoreTxt;
@@ -115,23 +115,20 @@ public class MainActivity extends AppCompatActivity {
     private void nextRound() {
         if (stage == 0) {
             stage++;
-            score = 0;
-            scoreTxt.setText (0);
+            scoreTxt.setText ("0");
             correct = new Random ().nextInt (4);
-            for (int i = 0; i < images.length; i++) {
-                if (i == correct)
-                    images[correct].setImageResource (getDrawable (stage + "4"));
-                else
-                    images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
-            }
-        } else if (stage == 10) {
+            buttonsVisible (true);
 
+        } else if (stage == 10) {
+            buttonsVisible (false);
+            countDownTimer.cancel ();
+            timer.setVisibility (View.GONE);
+            scoreTxt.setVisibility (View.GONE);
+            //startActivity(new Intent(MainActivity.this, ScoreActivity.class));
+            //finish();
         } else if (stage < 10 && timer.getText ().toString ().equals ("0:00")) {
 
         } else {
-            for (ImageButton img : images) {
-                img.setEnabled (false);
-            }
             if (correct == pressed) {
                 score++;
                 scoreTxt.setText (String.format ("%d", score));
@@ -142,12 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
                 }*/
             correct = new Random ().nextInt (4);
-            for (int i = 0; i < images.length; i++) {
-                if (i == correct)
-                    images[correct].setImageResource (getDrawable (stage + "4"));
-                else
-                    images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
-            }
+            buttonsVisible (true);
             }
     }
 
@@ -174,20 +166,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
+        stage = 0;
+        score = 0;
         play.setVisibility (View.GONE);
         timer.setVisibility (View.VISIBLE);
-        buttonsVisible (true);
         scoreTxt.setVisibility (View.VISIBLE);
         timer.setVisibility (View.VISIBLE);
         toggleTimer (true);
         nextRound ();
-
     }
 
     private void buttonsVisible(boolean mode) {
         int visibility = mode ? View.VISIBLE : View.GONE;
         imagesView.setVisibility (visibility);
         pause.setVisibility (visibility);
+        for (int i = 0; i < images.length; i++) {
+            if (i == correct)
+                images[correct].setImageResource (getDrawable (stage + "4"));
+            else {
+                int j = i + 1;
+                images[i].setImageResource (getDrawable (!(stage + "" + j + "").equals ("4") ? stage + "" + j + "" : i + ""));
+            }
+        }
     }
 }
 
