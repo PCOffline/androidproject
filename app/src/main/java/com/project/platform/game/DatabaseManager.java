@@ -139,8 +139,8 @@ public class DatabaseManager {
         if (getAllMembers() == null || getAllMembers().size() == 0)
             return null;
         for (Player p : getAllMembers ()) {
-            if (p.getId () == -1)
-                return null;
+            if (p.getUsername() == null)
+                continue;
             if (where.contains ("!=")) {
                 String s = where.split ("!=")[1];
                 int i = s.matches ("^d+$") ? Integer.parseInt (s) : -1;
