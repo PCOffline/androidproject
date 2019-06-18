@@ -27,5 +27,7 @@
     <string name="_0">0</string>
     <string name="timer">2:00</string>
     <string name="add_to_database">Add to Database</string>
+    <string name="logout">logout</string>
+    <string name="reset_database">Reset Database</string>
 
 </resources>

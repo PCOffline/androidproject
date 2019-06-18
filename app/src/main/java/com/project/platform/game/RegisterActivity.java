@@ -13,6 +13,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button register;
     Button login;
+    Button debug;
     EditText password;
     EditText confirmPassword;
     EditText username;
@@ -27,9 +28,10 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById (R.id.confirm_password);
         username = findViewById (R.id.username);
         login = findViewById (R.id.login);
+        debug = findViewById(R.id.debug);
         databaseManager = new DatabaseManager (RegisterActivity.this);
 
-        final SharedPreferences.Editor editor = getSharedPreferences ("Register", MODE_PRIVATE).edit ();
+        final SharedPreferences.Editor editor = getSharedPreferences("pref", MODE_PRIVATE).edit();
 
         register.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -58,6 +60,14 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent (RegisterActivity.this, LogInActivity.class);
                 startActivity (intent);
                 finish ();
+            }
+        });
+
+        debug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseManager.deleteAll();
+                Toast.makeText(RegisterActivity.this, "Successfully Reset Database", Toast.LENGTH_SHORT).show();
             }
         });
     }

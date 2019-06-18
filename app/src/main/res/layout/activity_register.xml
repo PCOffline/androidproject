@@ -57,4 +57,12 @@
         android:textColor="#0c7ded"
         android:textSize="30sp" />
 
+    <Button
+        android:id="@+id/debug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/reset_database"
+        android:textSize="30sp" />
+
 </LinearLayout>

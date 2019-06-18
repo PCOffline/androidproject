@@ -22,7 +22,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_log_in);
 
-        SharedPreferences sp = getSharedPreferences ("loginActivity", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("pref", MODE_PRIVATE);
         final SharedPreferences.Editor editor = sp.edit ();
         databaseManager = new DatabaseManager(this);
         loginBtn = findViewById (R.id.login);
@@ -38,8 +38,7 @@ public class LogInActivity extends AppCompatActivity {
                 if (username.length () > 0
                         && databaseManager.findByName (username) != null
                         && password.length () > 0
-                        && databaseManager.findByName ("").getPassword ().equals (password)
-                ) {
+                        && databaseManager.findByName(username).getPassword().equals(password)) {
                     editor.putBoolean ("isLoggedIn", true).apply ();
                     Intent intent = new Intent (LogInActivity.this, MainActivity.class);
                     intent.putExtra ("username", username);

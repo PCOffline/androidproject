@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -44,7 +43,6 @@ public class DatabaseManager {
         List<Player> results = Collections.emptyList ();
 
         if (cursor.getColumnCount () > 0) {
-            System.out.println (Arrays.toString (cursor.getColumnNames ()));
             results = new ArrayList<> ();
 
             while (cursor.moveToNext ()) {
@@ -138,7 +136,7 @@ public class DatabaseManager {
         cursor.close ();
 
         return password == null ? null : player;*/
-        if (getAllMembers () == null)
+        if (getAllMembers() == null || getAllMembers().size() == 0)
             return null;
         for (Player p : getAllMembers ()) {
             if (p.getId () == -1)
@@ -148,13 +146,13 @@ public class DatabaseManager {
                 int i = s.matches ("^d+$") ? Integer.parseInt (s) : -1;
 
 
-                if ((where.contains ("id")
+                if ((where.contains("Id")
                         && p.getId () != i)
-                        || (where.contains ("username")
+                        || (where.contains("Username")
                         && !p.getUsername ().equals (s))
-                        || (where.contains ("password")
+                        || (where.contains("Password")
                         && !p.getPassword ().equals (s))
-                        || (where.contains ("score")
+                        || (where.contains("Score")
                         && p.getScore () != i))
                     return p;
             } else if (where.contains ("=")) {
@@ -162,21 +160,21 @@ public class DatabaseManager {
                 int i = s.matches ("^d+$") ? Integer.parseInt (s) : -1;
 
 
-                if ((where.contains ("id")
+                if ((where.contains("Id")
                         && p.getId () == i)
-                        || (where.contains ("username")
+                        || (where.contains("Username")
                         && p.getUsername ().equals (s))
-                        || (where.contains ("password")
+                        || (where.contains("Password")
                         && p.getPassword ().equals (s))
-                        || (where.contains ("score")
+                        || (where.contains("Score")
                         && p.getScore () == i))
                     return p;
             } else if (where.contains ("contains")) {
                 String s = where.split (" contains ")[1];
 
-                if ((where.contains ("username")
+                if ((where.contains("Username")
                         && p.getUsername ().contains (s))
-                        || (where.contains ("password")
+                        || (where.contains("Password")
                         && p.getPassword ().contains (s)))
                     return p;
             } else if (where.contains ("<")) {
@@ -187,9 +185,9 @@ public class DatabaseManager {
                 else
                     return null;
 
-                if ((where.contains ("id")
+                if ((where.contains("Id")
                         && p.getId () < i)
-                        || (where.contains ("score")
+                        || (where.contains("Score")
                         && p.getScore () < i))
                     return p;
             } else if (where.contains (">")) {
@@ -200,9 +198,9 @@ public class DatabaseManager {
                 else
                     return null;
 
-                if ((where.contains ("id")
+                if ((where.contains("Id")
                         && p.getId () > i)
-                        || (where.contains ("score")
+                        || (where.contains("Score")
                         && p.getScore () > i))
                     return p;
             }
@@ -218,7 +216,8 @@ public class DatabaseManager {
         List<Player> players = getAllMembers();
         List<Player> newList = new ArrayList<Player>();
 
-
+        if (players == null || players.size() == 0)
+            return new ArrayList<Player>(0);
         Player max = players.get(0);
         for (int i = 0; i < players.size(); i++) {
             for (Player p : players) {

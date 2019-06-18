@@ -3,6 +3,7 @@ package com.project.platform.game;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton[] images;
     DatabaseManager databaseManager;
     Button add;
+    Button logout;
 
     private TextView scoreTxt;
 
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         images = new ImageButton[]{findViewById (R.id.image1), findViewById (R.id.image2), findViewById (R.id.image3), findViewById (R.id.image4)};
         imagesView = findViewById (R.id.images);
         add = findViewById(R.id.add);
+        logout = findViewById(R.id.logout);
         String name;
         String password;
         if (savedInstanceState == null) {
@@ -132,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
                     builder.show();
                 }
             });
+
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences.Editor sp = getSharedPreferences("pref", MODE_PRIVATE).edit();
+                    sp.putBoolean("isLoggedIn", false);
+                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                    finish();
+                }
+            });
         }
 
 
@@ -167,15 +180,16 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     private void nextRound() {
-        if (stage == 0) {
+        if (stage == -1) {
             stage++;
             scoreTxt.setText ("0");
             correct = new Random ().nextInt (4);
             buttonsVisible (true);
-
+            nextImage();
         } else if (stage == 10) {
             buttonsVisible (false);
             add.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.VISIBLE);
             stage = 0;
             countDownTimer.cancel ();
             timer.setVisibility (View.GONE);
@@ -187,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (stage < 10 && timer.getText ().toString ().equals ("0:00")) {
             buttonsVisible(false);
             add.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.VISIBLE);
             score = 0;
             stage = 0;
             timer.setVisibility(View.GONE);
@@ -199,11 +214,8 @@ public class MainActivity extends AppCompatActivity {
                 scoreTxt.setText (String.format ("%d", score));
             }
             stage++;
-
-                /*for (int i = 0; i <= 3; i++) {
-                    images[i].setImageResource (getDrawable (stage + (i + 1) + ""));
-                }*/
             correct = new Random ().nextInt (4);
+            nextImage();
             buttonsVisible (true);
             }
     }
@@ -233,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
     public void play(View view) {
         stage = 0;
         score = 0;
+        logout.setVisibility(View.GONE);
         add.setVisibility(View.GONE);
         play.setVisibility (View.GONE);
         timer.setVisibility (View.VISIBLE);
@@ -246,12 +259,16 @@ public class MainActivity extends AppCompatActivity {
         int visibility = mode ? View.VISIBLE : View.GONE;
         imagesView.setVisibility (visibility);
         pause.setVisibility (visibility);
+    }
+
+    private void nextImage() {
         for (int i = 0; i < images.length; i++) {
             if (i == correct)
-                images[correct].setImageResource (getDrawable (stage + "4"));
+                images[correct].setImageResource(getDrawable(stage + "4"));
             else {
                 int j = i + 1;
-                images[i].setImageResource (getDrawable (!(stage + "" + j + "").equals ("4") ? stage + "" + j + "" : i + ""));
+                String s = stage + "" + j;
+                images[i].setImageResource(getDrawable(s.charAt(s.length() - 1) != '4' ? stage + "" + j + "" : stage + "" + i));
             }
         }
     }

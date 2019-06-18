@@ -99,6 +99,14 @@
         android:text="@string/add_to_database"
         android:textSize="15sp"/>
 
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add"
+        android:layout_centerHorizontal="true"
+        android:text="@string/logout" />
+
     <LinearLayout
         android:id="@+id/pauseLayout"
         android:layout_width="wrap_content"
